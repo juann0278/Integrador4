@@ -18,6 +18,10 @@
     <modules>
         <module>microservicio-cuenta</module>
         <module>microservicio-monopatin</module>
+        <module>microservicio-mantenimiento</module>
+        <module>microservicio-tarifa</module>
+        <module>microservicio-viaje</module>
+
     </modules>
     <url/>
     <licenses>
