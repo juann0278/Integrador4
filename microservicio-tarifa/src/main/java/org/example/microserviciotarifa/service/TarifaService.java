@@ -23,11 +23,17 @@ public class TarifaService {
         return newTarifa;
     }
 
-    public void delete(Tarifa tarifa){
-        tarifaRepository.delete(tarifa);
+    public void deleteById(Long id){
+        if(!tarifaRepository.existsById(id)){
+            throw new RuntimeException("Tarifa no encontrada");
+        }
+        tarifaRepository.deleteById(id);
     }
 
     public Tarifa update(Tarifa tarifa){
+        if(!tarifaRepository.existsById(tarifa.getId())){
+            throw new RuntimeException("Tarifa no encontrada");
+        }
         return tarifaRepository.save(tarifa);
     }
 

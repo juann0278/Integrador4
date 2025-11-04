@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_tarifa
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: tarifa
+    ports:
+      - "3308:3306"

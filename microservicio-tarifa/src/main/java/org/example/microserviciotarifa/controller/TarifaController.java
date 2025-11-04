@@ -16,20 +16,32 @@ public class TarifaController {
     TarifaService tarifaService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Tarifa>> findAll(){
+    public ResponseEntity<List<Tarifa>> findAll() {
         List<Tarifa> tarifas = tarifaService.getAll();
-        if(tarifas.isEmpty()){
+        if (tarifas.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(tarifas);
     }
 
     @PostMapping("")
-    public ResponseEntity<Tarifa> save(@RequestBody Tarifa tarifa){
+    public ResponseEntity<Tarifa> save(@RequestBody Tarifa tarifa) {
         Tarifa newTarifa = tarifaService.save(tarifa);
         return ResponseEntity.ok(newTarifa);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        tarifaService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Tarifa> update (@PathVariable Long id, @RequestBody Tarifa tarifa ) {
+        tarifa.setId(id);
+        Tarifa updatedTarifa = tarifaService.update(tarifa);
+        return ResponseEntity.ok(updatedTarifa);
+    }
 
 
 }
