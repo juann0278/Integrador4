@@ -31,10 +31,23 @@ public class MantenimientoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mantenimiento> finById(@PathVariable("id") Long id) {
+    public ResponseEntity<Mantenimiento> getById(@PathVariable("id") Long id) {
         Mantenimiento mantenimiento = service.findById(id);
         if(mantenimiento == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(mantenimiento);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Mantenimiento> deleteById(@PathVariable("id") Long id) {
+        Mantenimiento mantenimiento = service.findById(id);
+        service.deleteById(id);
+        return ResponseEntity.ok(mantenimiento);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Mantenimiento>  update(@PathVariable("id") Long id, @RequestBody Mantenimiento mantenimiento) {
+        Mantenimiento entity = service.update(id, mantenimiento);
+        return ResponseEntity.ok(entity);
     }
 }

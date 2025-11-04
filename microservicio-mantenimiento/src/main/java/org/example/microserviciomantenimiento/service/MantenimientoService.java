@@ -25,4 +25,17 @@ public class MantenimientoService {
         return repository.findById(id).orElse(null);
     }
 
+    public  void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
+    public Mantenimiento update(Long id, Mantenimiento mantenimiento) {
+        Mantenimiento updateMantenimiento = repository.findById(id).orElse(null);
+        updateMantenimiento.setIdMonopatin(mantenimiento.getIdMonopatin());
+        updateMantenimiento.setDescripcion(mantenimiento.getDescripcion());
+        updateMantenimiento.setFechaFin(mantenimiento.getFechaFin());
+        updateMantenimiento.setFechaInicio(mantenimiento.getFechaInicio());
+        return repository.save(updateMantenimiento);
+    }
+
 }
