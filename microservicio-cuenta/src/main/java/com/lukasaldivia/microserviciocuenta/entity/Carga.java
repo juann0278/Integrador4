@@ -1,0 +1,31 @@
+package com.lukasaldivia.microserviciocuenta.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Carga {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
+
+    @NotNull(message = "El monto es obligatorio")
+    @Positive(message = "El monto debe ser mayor a 0")
+    private Float monto;
+
+    private LocalDateTime fecha = LocalDateTime.now();
+}
