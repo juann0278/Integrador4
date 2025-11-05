@@ -1,0 +1,45 @@
+package org.example.microservicioviaje.controller;
+
+import org.example.microservicioviaje.entity.Viaje;
+import org.example.microservicioviaje.service.ViajeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/viajes")
+public class ViajeController {
+
+    @Autowired
+    ViajeService viajeService;
+
+    @GetMapping("/")
+    public ResponseEntity<List<Viaje>> getAllViajes(){
+        List<Viaje> viajes = viajeService.getAll();
+        if (viajes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(viajes);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Viaje> save(@RequestBody Viaje viaje){
+        Viaje newdViaje = viajeService.save(viaje);
+        return ResponseEntity.ok(newdViaje);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Viaje> delete(@PathVariable Long id){
+        viajeService.deleteId(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Viaje> update(@PathVariable Long id, @RequestBody Viaje viaje){
+        viaje.setId(id);
+        Viaje updatedViaje = viajeService.update(viaje);
+        return ResponseEntity.ok(updatedViaje);
+    }
+}

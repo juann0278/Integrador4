@@ -1,0 +1,11 @@
+services:
+  mysql_viaje:
+    image: mysql:8
+    container_name: mysql_viaje
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: viaje
+    ports:
+      - "3309:3306"

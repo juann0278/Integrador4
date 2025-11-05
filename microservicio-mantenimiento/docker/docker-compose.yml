@@ -1,0 +1,11 @@
+services:
+  mysql_mantenimiento:
+    image: mysql:8
+    container_name: mysql_mantenimiento
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: mantenimiento
+    ports:
+      - "3307:3306"
