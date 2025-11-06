@@ -7,10 +7,10 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
-@Entity
+@Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,5 +24,8 @@ public class Monopatin{
     private Long id_viaje;
     private Long id_parada;
     private String estado;
+    private boolean disponible;
+    private double tiempoDeUso;
+
 }
 

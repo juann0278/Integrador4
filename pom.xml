@@ -21,6 +21,7 @@
         <module>microservicio-mantenimiento</module>
         <module>microservicio-tarifa</module>
         <module>microservicio-viaje</module>
+        <module>microservicio-monopatin</module>
 
     </modules>
     <url/>

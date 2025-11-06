@@ -49,11 +49,15 @@ public class MonopatinController {
             return ResponseEntity.notFound().build();
         }
         monopatinNew.setEstado(monopatin.getEstado());
+        monopatinNew.setDisponible(monopatin.isDisponible());
         monopatinNew.setLatitud(monopatin.getLatitud());
         monopatinNew.setLongitud(monopatin.getLongitud());
         monopatinNew.setKmsAcumulados(monopatin.getKmsAcumulados());
         monopatinNew.setId_parada(monopatin.getId_parada());
         monopatinNew.setId_viaje(monopatin.getId_viaje());
+        monopatinNew.setTiempoDeUso(monopatin.getTiempoDeUso());
         return   ResponseEntity.ok(monopatinService.save(monopatinNew));
     }
+
+
 }
