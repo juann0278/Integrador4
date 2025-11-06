@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MantenimientoRepository extends JpaRepository<Mantenimiento,Long> {
 
-
+    Mantenimiento findByIdMonopatin(Long idMonopatin);
 
 }

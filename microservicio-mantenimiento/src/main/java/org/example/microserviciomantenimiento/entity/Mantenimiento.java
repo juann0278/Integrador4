@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,8 +21,8 @@ public class Mantenimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idMonopatin;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private String descripcion;
 
 }

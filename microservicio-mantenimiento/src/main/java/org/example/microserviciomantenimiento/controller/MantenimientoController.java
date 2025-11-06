@@ -2,6 +2,7 @@ package org.example.microserviciomantenimiento.controller;
 
 
 import org.example.microserviciomantenimiento.entity.Mantenimiento;
+import org.example.microserviciomantenimiento.models.Monopatin;
 import org.example.microserviciomantenimiento.service.MantenimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +50,11 @@ public class MantenimientoController {
     public ResponseEntity<Mantenimiento>  update(@PathVariable("id") Long id, @RequestBody Mantenimiento mantenimiento) {
         Mantenimiento entity = service.update(id, mantenimiento);
         return ResponseEntity.ok(entity);
+    }
+
+    @PostMapping("/monopatin/{idMonopatin}")
+    public ResponseEntity<Mantenimiento>  saveMonopatin(@PathVariable("idMonopatin") Long idMonopatin){
+        service.saveMonopatin(idMonopatin);
+        return null;
     }
 }
