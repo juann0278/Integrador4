@@ -15,7 +15,7 @@ public class TarifaController {
     @Autowired
     TarifaService tarifaService;
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<Tarifa>> findAll() {
         List<Tarifa> tarifas = tarifaService.getAll();
         if (tarifas.isEmpty()) {
