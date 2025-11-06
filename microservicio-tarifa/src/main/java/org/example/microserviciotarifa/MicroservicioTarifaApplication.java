@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class MicroservicioTarifaApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(MicroservicioTarifaApplication.class, args);
     }
 }

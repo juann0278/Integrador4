@@ -1,9 +1,12 @@
 package org.example.microserviciotarifa.service;
 
 import org.example.microserviciotarifa.entity.Tarifa;
+import org.example.microserviciotarifa.feignClient.AdminCuentaFeignClient;
 import org.example.microserviciotarifa.repository.TarifaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -12,6 +15,8 @@ public class TarifaService {
 
     @Autowired
     TarifaRepository tarifaRepository;
+    @Autowired
+    AdminCuentaFeignClient adminCuentaFeignClient;
 
     public List<Tarifa> getAll(){
         return tarifaRepository.findAll();
@@ -36,5 +41,18 @@ public class TarifaService {
         }
         return tarifaRepository.save(tarifa);
     }
+
+    public Tarifa ajustar(Long idCuenta, Tarifa nuevaTarifa){
+
+        Boolean isAdmin = adminCuentaFeignClient.esAdmin(idCuenta);
+
+        if(!isAdmin){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN , ("No tiene permisos para ajustar el precio de tarifas"));
+        }
+
+        return tarifaRepository.save(nuevaTarifa);
+    }
+
+
 
 }

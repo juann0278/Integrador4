@@ -44,4 +44,11 @@ public class TarifaController {
     }
 
 
+    @PutMapping("/ajustar/{idCuenta}")
+    public ResponseEntity<Tarifa> ajustar(@PathVariable Long idCuenta, @RequestBody Tarifa tarifa) {
+        Tarifa updated = tarifaService.ajustar(idCuenta, tarifa);
+        return ResponseEntity.ok(updated);
+    }
+
+
 }
