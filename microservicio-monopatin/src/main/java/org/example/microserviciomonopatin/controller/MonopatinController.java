@@ -4,6 +4,7 @@ package org.example.microserviciomonopatin.controller;
 import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
 import org.example.microserviciomonopatin.dto.MonopatinReportePausaDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
+import org.example.microserviciomonopatin.models.Mantenimiento;
 import org.example.microserviciomonopatin.service.MonopatinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,9 +73,9 @@ public class MonopatinController {
 
 
     @PostMapping("/mantenimiento/{id}")
-    public ResponseEntity<Monopatin> registerMantenimiento(@PathVariable("id") Long id, @RequestBody Monopatin monopatin) {
-        Monopatin monopatinMantenimiento = monopatinService.registerMantenimiento(id, monopatin);
-        return  ResponseEntity.ok(monopatinMantenimiento);
+    public ResponseEntity<Mantenimiento> registerMantenimiento(@PathVariable("id") Long id, @RequestBody Monopatin monopatin) {
+        Mantenimiento mantenimiento = monopatinService.registerMantenimiento(id, monopatin);
+        return  ResponseEntity.ok(mantenimiento);
     }
 
 

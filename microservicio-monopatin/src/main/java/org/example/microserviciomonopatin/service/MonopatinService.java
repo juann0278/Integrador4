@@ -6,11 +6,13 @@ import org.example.microserviciomonopatin.dto.MonopatinReportePausaDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
 import org.example.microserviciomonopatin.feignClients.MantenimientoFeignClient;
 import org.example.microserviciomonopatin.feignClients.ViajeFeignClient;
+import org.example.microserviciomonopatin.models.Mantenimiento;
 import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -94,16 +96,23 @@ public class MonopatinService {
     }
 
 
-    public Monopatin registerMantenimiento(Long id, Monopatin monopatinMantenimiento) {
+    public Mantenimiento registerMantenimiento(Long id, Monopatin monopatinMantenimiento) {
+        Mantenimiento mantenimiento = new Mantenimiento();
         Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
         if(monopatin.getEstado().equals("mantenimiento")){
             throw new RuntimeException("El monopatin ya se encuentra en mantenimiento");
         }
         monopatin.setEstado("mantenimiento");
+        monopatinRepository.save(monopatin);
 
-       // mantenimientoFeignClient.saveMantenimiento(monopatinMantenimiento);
-        //AGREGAR CARPETA MODEL CON MANTENIMIENTO Y MODIFICAR EL TIPO saveMantenimiento
-        return monopatinRepository.save(monopatin);
+        mantenimiento.setDescripcion("en mantenimiento");
+        mantenimiento.setIdMonopatin(monopatin.getId());
+        mantenimiento.setFechaInicio(LocalDate.now());
+        mantenimiento.setFechaFin(LocalDate.MAX);
+
+
+
+        return mantenimientoFeignClient.saveMantenimiento(mantenimiento);
     }
 
 }

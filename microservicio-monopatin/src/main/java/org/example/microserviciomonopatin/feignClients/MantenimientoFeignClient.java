@@ -1,7 +1,8 @@
 package org.example.microserviciomonopatin.feignClients;
 
 
-import org.example.microserviciomantenimiento.entity.Mantenimiento;
+
+import org.example.microserviciomonopatin.models.Mantenimiento;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
