@@ -1,12 +1,14 @@
 package org.example.microserviciomonopatin.service;
 
 
+import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
 import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +56,24 @@ public class MonopatinService {
         int latMin = latitud - latRangoMax;
         int latMax = latitud + latRangoMax;
         return monopatinRepository.findCercanos(longMin, longMax, latMin, latMax);
+    }
+
+    public List<MonopatinReporteDTO> getMonopatinesByKms() {
+        List<Monopatin> monopatinesByKms = monopatinRepository.getAllMonopatinesByKms();
+        List<MonopatinReporteDTO> reporte = new ArrayList<>();
+        for (Monopatin m : monopatinesByKms ){
+            MonopatinReporteDTO dto = new MonopatinReporteDTO(
+                    m.getId(),
+                    m.getKmsAcumulados()
+            );
+            reporte.add(dto);
+        }
+        return reporte;
+    }
+
+
+    public List<MonopatinReporteDTO> getMonopatinesConPausa() {
+        List<Monopatin> monopatinesByPausa = monopatinRepository.getAllMonopatinesByPausa();
+
     }
 }

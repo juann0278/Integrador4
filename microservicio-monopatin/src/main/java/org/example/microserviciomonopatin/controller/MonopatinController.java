@@ -1,6 +1,7 @@
 package org.example.microserviciomonopatin.controller;
 
 
+import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
 import org.example.microserviciomonopatin.service.MonopatinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,18 @@ public class MonopatinController {
         List<Monopatin> monopatinesCercanos =   monopatinService.findCercanos(longitud, latitud, longMaxRango, latMaxRango);
         return  ResponseEntity.ok(monopatinesCercanos);
     }
+
+    @GetMapping("/kms")
+    public ResponseEntity<?> getReporteMonopatinesByKms() {
+        List<MonopatinReporteDTO> reporte = monopatinService.getMonopatinesByKms();
+        return ResponseEntity.ok(reporte);
+    }
+
+   // @GetMapping("/usoConPausa")
+   // public ResponseEntity<?> getReporteMonopatinesConPausa(){
+   //     List<MonopatinReporteDTO> reporte = monopatinService.getMonopatinesConPausa();
+   //     return ResponseEntity.ok(reporte);
+   // }
 
 
 }

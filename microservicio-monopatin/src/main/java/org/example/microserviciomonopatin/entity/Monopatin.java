@@ -23,7 +23,8 @@ public class Monopatin{
     private Long id_parada;
     private String estado;
     private boolean disponible;
-    private double tiempoDeUso;
+   // private double tiempoDeUso;
+    //private double tiempoPausaTotal;
 
 }
 

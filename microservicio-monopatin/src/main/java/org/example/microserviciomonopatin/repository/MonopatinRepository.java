@@ -13,6 +13,9 @@ public interface MonopatinRepository extends MongoRepository<Monopatin, Long>{
     @Query ("{'longitud' : { $gte: ?0 , $lte: ?1}, 'latitud': { $gte: ?2, $lte: ?3}, 'disponible': true}")
     public List<Monopatin> findCercanos(int longMin, int longMax, int latMin, int latMax);
 
+    @Query (value = "{}", sort = "{ 'kmsAcumulados': -1 }")
+    List<Monopatin> getAllMonopatinesByKms();
 
-
+    @Query (value = "{}", sort = "{ 'tiempoDeUso'")
+    List<Monopatin> getAllMonopatinesByPausa();
 }
