@@ -4,6 +4,7 @@ import com.lukasaldivia.microserviciocuenta.entity.Billetera;
 import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
+import com.lukasaldivia.microserviciocuenta.repository.BilleteraRepository;
 import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    private BilleteraService billeteraService;
 
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
@@ -44,47 +47,36 @@ public class UsuarioService {
         return usuario.getRol();
     }
 
-    public Float getSaldo(Long usuarioId, Long billeteraId){
-        Billetera billetera = usuarioRepository.findBilleteraByUsuarioId(usuarioId, billeteraId);
-
-        if(billetera == null)
-            return null;
-
-        return billetera.getSaldo();
-
-    }
-
-    public Boolean isPremium(Long usuarioId){
+    public Billetera agregarBilletera(Long usuarioId,Long billeteraId){
         Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
+
         if(usuario == null)
             return null;
 
-        return usuario.isPremium();
-    }
+        Billetera billetera = billeteraService.findById(billeteraId);
 
-    public EstadoCuenta getEstadoCuenta(Long usuarioId){
-        Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
-        if(usuario == null)
+        if (billetera == null)
             return null;
 
-        return usuario.getEstadoCuenta();
+        List<Billetera> billeteras = usuario.getBilleteras();
+
+        billeteras.add(billetera);
+
+        usuario.setBilleteras(billeteras);
+
+        usuarioRepository.save(usuario);
+
+        return billetera;
+
+
     }
 
-    public EstadoCuenta setEstadoCuenta(Boolean estadoCuenta, Long usuarioId){
-        Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
-        if(usuario == null)
-            return null;
-
-        EstadoCuenta estado = EstadoCuenta.ACTIVA;
-
-        if (!estadoCuenta){
-            estado = EstadoCuenta.ANULADA;
-        }
-
-        usuario.setEstadoCuenta(estado);
-        update(usuario);
-        return estado;
+    public List<Usuario> getUsuariosByBilleteraId(Long billeteraId){
+        List<Usuario> usuarios = usuarioRepository.findUsuariosByBilleteraId(billeteraId);
+        return usuarios;
     }
+
+
 
 
 }

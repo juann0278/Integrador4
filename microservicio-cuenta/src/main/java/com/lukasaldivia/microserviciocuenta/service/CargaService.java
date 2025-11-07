@@ -17,14 +17,7 @@ public class CargaService {
     @Autowired
     private BilleteraService billeteraService;
 
-    public Carga agregarSaldo(Long usuarioId, Long billeteraId, Float monto) {
-
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElse(null);
-
-        if(usuario == null){
-            return null;
-        }
+    public Carga agregarSaldo(Long billeteraId, Float monto) {
 
         // Primero actualizamos el saldo de la billetera
         Billetera billeteraActualizada = billeteraService.agregarSaldo(billeteraId, monto);
@@ -35,7 +28,7 @@ public class CargaService {
 
         // Luego registramos la carga
         Carga carga = new Carga();
-        carga.setUsuario(usuario);
+        carga.setBilletera(billeteraActualizada);
         carga.setMonto(monto);
 
         return cargaRepository.save(carga);

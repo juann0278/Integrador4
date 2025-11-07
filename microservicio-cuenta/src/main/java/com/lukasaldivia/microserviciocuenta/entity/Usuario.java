@@ -37,11 +37,13 @@ public class Usuario {
     @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
 
-    private LocalDateTime fechaRegistro =  LocalDateTime.now();
-
-    private boolean premium = false;
-
     @ManyToMany
+    @JoinTable(
+            name = "usuario_billetera",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "billetera_id")
+
+    )
     private List<Billetera> billeteras;
 
     private String mercadoPago;
@@ -49,7 +51,4 @@ public class Usuario {
     @NotNull(message = "El rol es obligatorio")
     @Enumerated(EnumType.STRING)
     private Rol rol;
-
-    @Enumerated(EnumType.STRING)
-    private EstadoCuenta estadoCuenta = EstadoCuenta.ACTIVA;
 }

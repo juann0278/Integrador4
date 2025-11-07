@@ -13,13 +13,12 @@ public class CargaController {
     @Autowired
     private CargaService cargaService;
 
-    @PostMapping("/usuario/{usuarioId}/billetera/{billeteraId}")
+    @PostMapping("/billetera/{billeteraId}")
     public ResponseEntity<Carga> cargar(
-            @PathVariable Long usuarioId,
             @PathVariable Long billeteraId,
             @RequestParam Float monto
     ){
-        Carga carga = cargaService.agregarSaldo(usuarioId, billeteraId, monto);
+        Carga carga = cargaService.agregarSaldo(billeteraId, monto);
 
         if(carga == null){
             return ResponseEntity.badRequest().build();

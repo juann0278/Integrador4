@@ -63,61 +63,6 @@ public class UsuarioController {
         return ResponseEntity.ok(rol);
     }
 
-    @GetMapping("/{usuarioId}/billetera/{billeteraId}/saldo")
-    public ResponseEntity<Float> getSaldo(
-            @PathVariable Long usuarioId,
-            @PathVariable Long billeteraId
-    ){
-        Float saldo = usuarioService.getSaldo(usuarioId, billeteraId);
 
-        if(saldo == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(saldo);
-    }
-
-    @GetMapping("/{usuarioId}/premium")
-    public ResponseEntity<Boolean> getPremium(
-            @PathVariable Long usuarioId
-    ){
-        Boolean premium = usuarioService.isPremium(usuarioId);
-        if(premium == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(premium);
-    }
-
-    @GetMapping("/{usuarioId}/estado-cuenta")
-    public ResponseEntity<Boolean> getEstadoCuenta(@PathVariable Long usuarioId){
-        EstadoCuenta estadoCuenta = usuarioService.getEstadoCuenta(usuarioId);
-
-        if(estadoCuenta == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(estadoCuenta == EstadoCuenta.ACTIVA);
-    }
-
-    @PostMapping("/{usuarioId}/estado-cuenta")
-    public ResponseEntity<EstadoCuenta> save(
-            @Valid @RequestBody Boolean estadoCuenta,
-            @PathVariable Long usuarioId
-    ){
-
-        EstadoCuenta estado = usuarioService.setEstadoCuenta(estadoCuenta, usuarioId);
-
-        if(estadoCuenta == null){
-            return ResponseEntity.badRequest().build();
-        }
-
-        if (estado == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(estado);
-
-    }
 
 }
