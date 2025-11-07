@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MonopatinService {
@@ -22,8 +23,8 @@ public class MonopatinService {
         return  monopatinRepository.findAll();
     }
 
-    public Monopatin findById(Long id) {
-        return monopatinRepository.findById(id).orElse(null);
+    public Optional<Monopatin> findById(Long id) {
+        return monopatinRepository.findById(id);
     }
 
     public void deleteById(Long id) {

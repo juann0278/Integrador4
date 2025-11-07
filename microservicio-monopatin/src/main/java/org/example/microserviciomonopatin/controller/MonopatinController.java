@@ -2,15 +2,13 @@ package org.example.microserviciomonopatin.controller;
 
 
 import org.example.microserviciomonopatin.entity.Monopatin;
-import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.example.microserviciomonopatin.service.MonopatinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/monopatin")
@@ -28,6 +26,13 @@ public class MonopatinController {
         return  ResponseEntity.ok(monopatines);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Monopatin> getById(@PathVariable Long id) {
+        Optional<Monopatin> monopatin = monopatinService.findById(id);
+        return monopatin.map(ResponseEntity::ok).orElseGet
+                (() -> ResponseEntity.notFound().build());
+    }
+
 
     @PostMapping("")
     public ResponseEntity<Monopatin> save(@RequestBody Monopatin monopatin) {
@@ -36,8 +41,8 @@ public class MonopatinController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Monopatin> delete(@PathVariable("id") Long id) {
-        Monopatin monopatin = monopatinService.findById(id);
+    public ResponseEntity<Optional<Monopatin>> delete(@PathVariable("id") Long id) {
+        Optional<Monopatin> monopatin = monopatinService.findById(id);
         monopatinService.deleteById(id);
         return ResponseEntity.ok(monopatin);
     }
