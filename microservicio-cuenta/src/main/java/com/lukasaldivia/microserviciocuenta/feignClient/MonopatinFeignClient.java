@@ -1,8 +1,0 @@
-package com.lukasaldivia.microserviciocuenta.feignClient;
-
-import org.springframework.cloud.openfeign.FeignClient;
-
-@FeignClient(name="microservicio-monopatin", url="http://localhost:800x/monopatines")
-public interface MonopatinFeignClient {
-
-}

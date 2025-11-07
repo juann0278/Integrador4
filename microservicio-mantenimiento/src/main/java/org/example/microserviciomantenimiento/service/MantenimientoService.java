@@ -21,8 +21,8 @@ public class MantenimientoService {
     private MantenimientoRepository repository;
 
     @Autowired
-    MonopatinFeignClient monopatinFeignClient; //revisar
-    private FeignClientFactory feignContext;
+    private MonopatinFeignClient monopatinFeignClient; //revisar
+
 
     public Mantenimiento save(Mantenimiento mantenimiento) {
         return repository.save(mantenimiento);

@@ -39,6 +39,8 @@ public class Usuario {
 
     private LocalDateTime fechaRegistro =  LocalDateTime.now();
 
+    private boolean premium = false;
+
     @ManyToMany
     private List<Billetera> billeteras;
 
@@ -47,4 +49,7 @@ public class Usuario {
     @NotNull(message = "El rol es obligatorio")
     @Enumerated(EnumType.STRING)
     private Rol rol;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoCuenta estadoCuenta = EstadoCuenta.ACTIVA;
 }
