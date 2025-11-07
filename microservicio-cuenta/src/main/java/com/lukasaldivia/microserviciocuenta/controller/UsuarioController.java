@@ -1,5 +1,6 @@
 package com.lukasaldivia.microserviciocuenta.controller;
 
+import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.service.UsuarioService;
@@ -86,6 +87,37 @@ public class UsuarioController {
         }
 
         return ResponseEntity.ok(premium);
+    }
+
+    @GetMapping("/{usuarioId}/estado-cuenta")
+    public ResponseEntity<EstadoCuenta> getEstadoCuenta(@PathVariable Long usuarioId){
+        EstadoCuenta estadoCuenta = usuarioService.getEstadoCuenta(usuarioId);
+
+        if(estadoCuenta == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(estadoCuenta);
+    }
+
+    @PostMapping("/{usuarioId}/estado-cuenta")
+    public ResponseEntity<EstadoCuenta> save(
+            @Valid @RequestBody Boolean estadoCuenta,
+            @PathVariable Long usuarioId
+    ){
+
+        EstadoCuenta estado = usuarioService.setEstadoCuenta(estadoCuenta, usuarioId);
+
+        if(estadoCuenta == null){
+            return ResponseEntity.badRequest().build();
+        }
+
+        if (estado == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(estado);
+
     }
 
 }

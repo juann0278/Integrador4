@@ -1,6 +1,7 @@
 package com.lukasaldivia.microserviciocuenta.service;
 
 import com.lukasaldivia.microserviciocuenta.entity.Billetera;
+import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
@@ -59,6 +60,30 @@ public class UsuarioService {
             return null;
 
         return usuario.isPremium();
+    }
+
+    public EstadoCuenta getEstadoCuenta(Long usuarioId){
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
+        if(usuario == null)
+            return null;
+
+        return usuario.getEstadoCuenta();
+    }
+
+    public EstadoCuenta setEstadoCuenta(Boolean estadoCuenta, Long usuarioId){
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElse(null);
+        if(usuario == null)
+            return null;
+
+        EstadoCuenta estado = EstadoCuenta.ACTIVA;
+
+        if (!estadoCuenta){
+            estado = EstadoCuenta.ANULADA;
+        }
+
+        usuario.setEstadoCuenta(estado);
+        update(usuario);
+        return estado;
     }
 
 
