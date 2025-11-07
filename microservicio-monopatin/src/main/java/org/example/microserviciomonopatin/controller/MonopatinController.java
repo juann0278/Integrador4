@@ -2,6 +2,7 @@ package org.example.microserviciomonopatin.controller;
 
 
 import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
+import org.example.microserviciomonopatin.dto.MonopatinReportePausaDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
 import org.example.microserviciomonopatin.service.MonopatinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,11 +70,20 @@ public class MonopatinController {
         return ResponseEntity.ok(reporte);
     }
 
-   // @GetMapping("/usoConPausa")
-   // public ResponseEntity<?> getReporteMonopatinesConPausa(){
-   //     List<MonopatinReporteDTO> reporte = monopatinService.getMonopatinesConPausa();
-   //     return ResponseEntity.ok(reporte);
-   // }
+
+    @PostMapping("/mantenimiento/{id}")
+    public ResponseEntity<Monopatin> registerMantenimiento(@PathVariable("id") Long id, @RequestBody Monopatin monopatin) {
+        Monopatin monopatinMantenimiento = monopatinService.registerMantenimiento(id, monopatin);
+        return  ResponseEntity.ok(monopatinMantenimiento);
+    }
+
+
+
+    @GetMapping("/usoConPausa")
+    public ResponseEntity<?> getReporteMonopatinesConYSinPausa(){
+     List<MonopatinReportePausaDTO> reporte = monopatinService.getMonopatinesConYSinPausa();
+     return ResponseEntity.ok(reporte);
+    }
 
 
 }

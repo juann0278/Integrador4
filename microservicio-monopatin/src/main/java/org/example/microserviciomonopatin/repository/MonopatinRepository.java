@@ -16,6 +16,4 @@ public interface MonopatinRepository extends MongoRepository<Monopatin, Long>{
     @Query (value = "{}", sort = "{ 'kmsAcumulados': -1 }")
     List<Monopatin> getAllMonopatinesByKms();
 
-    @Query (value = "{}", sort = "{ 'tiempoDeUso'")
-    List<Monopatin> getAllMonopatinesByPausa();
 }

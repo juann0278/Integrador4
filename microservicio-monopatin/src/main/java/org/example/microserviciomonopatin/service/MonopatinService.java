@@ -2,7 +2,10 @@ package org.example.microserviciomonopatin.service;
 
 
 import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
+import org.example.microserviciomonopatin.dto.MonopatinReportePausaDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
+import org.example.microserviciomonopatin.feignClients.MantenimientoFeignClient;
+import org.example.microserviciomonopatin.feignClients.ViajeFeignClient;
 import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,10 @@ import java.util.Optional;
 public class MonopatinService {
     @Autowired
     private MonopatinRepository monopatinRepository;
+    @Autowired
+    private ViajeFeignClient viajeFeignClient;
+    @Autowired
+    private MantenimientoFeignClient mantenimientoFeignClient;
 
     public Monopatin save(Monopatin monopatin) {
         return monopatinRepository.save(monopatin);
@@ -43,7 +50,7 @@ public class MonopatinService {
             monopatinNew.setKmsAcumulados(monopatin.getKmsAcumulados());
             monopatinNew.setId_parada(monopatin.getId_parada());
             monopatinNew.setId_viaje(monopatin.getId_viaje());
-            monopatinNew.setTiempoDeUso(monopatin.getTiempoDeUso());
+           // monopatinNew.setTiempoDeUso(monopatin.getTiempoDeUso());
         }else{
             return null;
         }
@@ -72,8 +79,31 @@ public class MonopatinService {
     }
 
 
-    public List<MonopatinReporteDTO> getMonopatinesConPausa() {
-        List<Monopatin> monopatinesByPausa = monopatinRepository.getAllMonopatinesByPausa();
-
+    public List<MonopatinReportePausaDTO> getMonopatinesConYSinPausa() {
+        List<Monopatin> monopatinesConXViajes = viajeFeignClient.getMonopatinesXViajesYAnio();
+        List<MonopatinReportePausaDTO> reporte = new ArrayList<>();
+        for (Monopatin m : monopatinesConXViajes) {
+            MonopatinReportePausaDTO dto = new MonopatinReportePausaDTO(
+                    m.getId(),
+                    viajeFeignClient.getPausaAcumulada(m.getId()),
+                    viajeFeignClient.getTiempoUsoTotal(m.getId())
+            );
+            reporte.add(dto);
+        }
+        return reporte;
     }
+
+
+    public Monopatin registerMantenimiento(Long id, Monopatin monopatinMantenimiento) {
+        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
+        if(monopatin.getEstado().equals("mantenimiento")){
+            throw new RuntimeException("El monopatin ya se encuentra en mantenimiento");
+        }
+        monopatin.setEstado("mantenimiento");
+
+       // mantenimientoFeignClient.saveMantenimiento(monopatinMantenimiento);
+        //AGREGAR CARPETA MODEL CON MANTENIMIENTO Y MODIFICAR EL TIPO saveMantenimiento
+        return monopatinRepository.save(monopatin);
+    }
+
 }
