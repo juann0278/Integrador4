@@ -1,4 +1,8 @@
 package com.lukasaldivia.microserviciocuenta.repository;
 
-public class BilleteraRepository {
+import com.lukasaldivia.microserviciocuenta.entity.Billetera;
+import com.lukasaldivia.microserviciocuenta.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BilleteraRepository extends JpaRepository<Billetera,Long> {
 }

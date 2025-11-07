@@ -39,6 +39,8 @@ public class Usuario {
 
     private LocalDateTime fechaRegistro =  LocalDateTime.now();
 
+    private boolean premium = false;
+
     @ManyToMany
     private List<Billetera> billeteras;
 

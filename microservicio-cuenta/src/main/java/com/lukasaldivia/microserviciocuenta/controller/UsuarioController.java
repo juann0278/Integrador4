@@ -1,5 +1,6 @@
 package com.lukasaldivia.microserviciocuenta.controller;
 
+import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -50,7 +51,41 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.save(user));
     }
 
+    @GetMapping("/{id}/rol")
+    public ResponseEntity<Rol> getRol(@PathVariable("id") Long id){
+        Rol rol = usuarioService.getRolById(id);
 
+        if(rol == null){
+            return ResponseEntity.notFound().build();
+        }
 
+        return ResponseEntity.ok(rol);
+    }
+
+    @GetMapping("/{usuarioId}/billetera/{billeteraId}/saldo")
+    public ResponseEntity<Float> getSaldo(
+            @PathVariable Long usuarioId,
+            @PathVariable Long billeteraId
+    ){
+        Float saldo = usuarioService.getSaldo(usuarioId, billeteraId);
+
+        if(saldo == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(saldo);
+    }
+
+    @GetMapping("/{usuarioId}/premium")
+    public ResponseEntity<Boolean> getPremium(
+            @PathVariable Long usuarioId
+    ){
+        Boolean premium = usuarioService.isPremium(usuarioId);
+        if(premium == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(premium);
+    }
 
 }
