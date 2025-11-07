@@ -90,14 +90,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/{usuarioId}/estado-cuenta")
-    public ResponseEntity<EstadoCuenta> getEstadoCuenta(@PathVariable Long usuarioId){
+    public ResponseEntity<Boolean> getEstadoCuenta(@PathVariable Long usuarioId){
         EstadoCuenta estadoCuenta = usuarioService.getEstadoCuenta(usuarioId);
 
         if(estadoCuenta == null){
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(estadoCuenta);
+        return ResponseEntity.ok(estadoCuenta == EstadoCuenta.ACTIVA);
     }
 
     @PostMapping("/{usuarioId}/estado-cuenta")
