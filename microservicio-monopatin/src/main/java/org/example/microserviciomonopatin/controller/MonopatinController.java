@@ -44,19 +44,17 @@ public class MonopatinController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Monopatin> update(@PathVariable("id") Long id, @RequestBody Monopatin monopatin) {
-        Monopatin monopatinNew = monopatinService.findById(id);
-        if (monopatinNew == null) {
+        Monopatin monopatinActualizado = monopatinService.update(id, monopatin);
+        if (monopatinActualizado == null) {
             return ResponseEntity.notFound().build();
         }
-        monopatinNew.setEstado(monopatin.getEstado());
-        monopatinNew.setDisponible(monopatin.isDisponible());
-        monopatinNew.setLatitud(monopatin.getLatitud());
-        monopatinNew.setLongitud(monopatin.getLongitud());
-        monopatinNew.setKmsAcumulados(monopatin.getKmsAcumulados());
-        monopatinNew.setId_parada(monopatin.getId_parada());
-        monopatinNew.setId_viaje(monopatin.getId_viaje());
-        monopatinNew.setTiempoDeUso(monopatin.getTiempoDeUso());
-        return   ResponseEntity.ok(monopatinService.save(monopatinNew));
+        return   ResponseEntity.ok(monopatinService.save(monopatinActualizado));
+    }
+
+    @GetMapping("/monopatinesCercanos/longitud/{longitud}/latitud/{latitud}")
+    public ResponseEntity<List<Monopatin>> getMonopatinesCercanos(@PathVariable int longitud, @PathVariable int latitud, @RequestParam int longMaxRango, @RequestParam int latMaxRango) {
+        List<Monopatin> monopatinesCercanos =   monopatinService.findCercanos(longitud, latitud, longMaxRango, latMaxRango);
+        return  ResponseEntity.ok(monopatinesCercanos);
     }
 
 

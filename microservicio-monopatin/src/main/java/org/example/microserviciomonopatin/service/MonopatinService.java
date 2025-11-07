@@ -4,6 +4,7 @@ package org.example.microserviciomonopatin.service;
 import org.example.microserviciomonopatin.entity.Monopatin;
 import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +30,28 @@ public class MonopatinService {
         monopatinRepository.deleteById(id);
     }
 
-    public Monopatin update(Monopatin monopatin) {
+    public Monopatin update(Long id, Monopatin monopatin) {
+        Monopatin monopatinNew = monopatinRepository.findById(id).orElse(null);
+        if  (monopatinNew != null) {
+            monopatinNew.setEstado(monopatin.getEstado());
+            monopatinNew.setDisponible(monopatin.isDisponible());
+            monopatinNew.setLatitud(monopatin.getLatitud());
+            monopatinNew.setLongitud(monopatin.getLongitud());
+            monopatinNew.setKmsAcumulados(monopatin.getKmsAcumulados());
+            monopatinNew.setId_parada(monopatin.getId_parada());
+            monopatinNew.setId_viaje(monopatin.getId_viaje());
+            monopatinNew.setTiempoDeUso(monopatin.getTiempoDeUso());
+        }else{
+            return null;
+        }
         return  monopatinRepository.save(monopatin);
+    }
+
+    public List<Monopatin> findCercanos(int longitud, int latitud, int longRangoMax, int latRangoMax) {
+        int longMin = longitud - longRangoMax;
+        int longMax = longitud + longRangoMax;
+        int latMin = latitud - latRangoMax;
+        int latMax = latitud + latRangoMax;
+        return monopatinRepository.findCercanos(longMin, longMax, latMin, latMax);
     }
 }
