@@ -12,9 +12,8 @@ import java.util.List;
 @FeignClient (name = "microservicio-viaje", url = "http://localhost:8006/viajes")
 public interface ViajeFeignClient {
 
-
-    @GetMapping("/cantViajes/{cantViajes}/año/{anio}")
-    List<Monopatin> getMonopatinesXViajesYAnio();
+    @GetMapping("/monopatines")
+    List<Monopatin> getAll();
 
     @GetMapping("/monopatin/{id}/tiempoUso")
     double getTiempoUsoTotal(@PathVariable Long id);

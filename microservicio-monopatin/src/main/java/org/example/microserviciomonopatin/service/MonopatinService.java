@@ -82,9 +82,9 @@ public class MonopatinService {
 
 
     public List<MonopatinReportePausaDTO> getMonopatinesConYSinPausa() {
-        List<Monopatin> monopatinesConXViajes = viajeFeignClient.getMonopatinesXViajesYAnio();
+        List<Monopatin> monopatinesByPausa = viajeFeignClient.getAll();
         List<MonopatinReportePausaDTO> reporte = new ArrayList<>();
-        for (Monopatin m : monopatinesConXViajes) {
+        for (Monopatin m : monopatinesByPausa) {
             MonopatinReportePausaDTO dto = new MonopatinReportePausaDTO(
                     m.getId(),
                     viajeFeignClient.getPausaAcumulada(m.getId()),
