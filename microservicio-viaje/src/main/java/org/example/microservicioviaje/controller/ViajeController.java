@@ -1,6 +1,7 @@
 package org.example.microservicioviaje.controller;
 
 import org.example.microservicioviaje.entity.Viaje;
+import org.example.microservicioviaje.model.Monopatin;
 import org.example.microservicioviaje.service.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,12 @@ public class ViajeController {
         viaje.setId(id);
         Viaje updatedViaje = viajeService.update(viaje);
         return ResponseEntity.ok(updatedViaje);
+    }
+
+    //4)c) Como administrador quiero consultar los monopatines con mas de X viajes en un cierto año
+    @GetMapping("/monopatines-mas-viajes")
+    public ResponseEntity<List<Monopatin>> obtenerMonopatinesMasViajes(@RequestParam int cantidad, @RequestParam int anio){
+        List<Monopatin> lista = viajeService.obtenerMonopatinesMasViajes(cantidad, anio);
+        return ResponseEntity.ok(lista);
     }
 }
