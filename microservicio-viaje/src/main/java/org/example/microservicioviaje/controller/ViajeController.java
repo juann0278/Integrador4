@@ -2,11 +2,13 @@ package org.example.microservicioviaje.controller;
 
 import org.example.microservicioviaje.entity.Viaje;
 import org.example.microservicioviaje.model.Monopatin;
+import org.example.microservicioviaje.model.Usuario;
 import org.example.microservicioviaje.service.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,5 +51,13 @@ public class ViajeController {
     public ResponseEntity<List<Monopatin>> obtenerMonopatinesMasViajes(@RequestParam int cantidad, @RequestParam int anio){
         List<Monopatin> lista = viajeService.obtenerMonopatinesMasViajes(cantidad, anio);
         return ResponseEntity.ok(lista);
+    }
+
+    //e. Como administrador quiero ver los usuarios que más utilizan los monopatines, filtrado por
+    //período y por tipo de usuario.
+    @GetMapping("/usuarios-mayor-uso")
+    public ResponseEntity<List<Usuario>> obtenerUsuariosMayorUso(@RequestParam LocalDate ini,@RequestParam LocalDate fin , @RequestParam String tipoUsuario){
+        List<Usuario> usuarios = viajeService.findUsuariosMayorUso(ini, fin, tipoUsuario);
+        return ResponseEntity.ok(usuarios);
     }
 }

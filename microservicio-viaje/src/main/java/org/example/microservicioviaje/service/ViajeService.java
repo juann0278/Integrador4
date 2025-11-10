@@ -1,13 +1,17 @@
 package org.example.microservicioviaje.service;
 
 import org.example.microservicioviaje.entity.Viaje;
+import org.example.microservicioviaje.feignClient.CuentaFeignClient;
 import org.example.microservicioviaje.feignClient.MonopatinFeignClient;
 import org.example.microservicioviaje.model.Monopatin;
+import org.example.microservicioviaje.model.Usuario;
 import org.example.microservicioviaje.repository.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,6 +24,8 @@ public class ViajeService {
 
     @Autowired
     private MonopatinFeignClient monopatinFeignClient;
+    @Autowired
+    private CuentaFeignClient cuentaFeignClient;
 
     public List<Viaje> getAll(){ return viajeRepository.findAll();}
 
@@ -59,6 +65,16 @@ public class ViajeService {
             resultado.add(monopatin);
         }
         return resultado;
+    }
+
+    public List<Usuario> findUsuariosMayorUso(LocalDate inicio, LocalDate fin, String rol){
+        List<Long> usuariosRol = cuentaFeignClient.getUsuarios(rol);
+
+        if (usuariosRol.isEmpty()){
+            return Collections.emptyList();
+        }
+
+        return viajeRepository.contarViajesPorUsuarioYRol(inicio, fin, usuariosRol);
     }
 
 }
