@@ -34,5 +34,10 @@ public class CobroController {
     }
 
 
+    @GetMapping("/total/{anio}/{mesIni}/{mesFin}")
+    public ResponseEntity<Double> getTotal (@PathVariable int anio, @PathVariable int mesIni, @PathVariable int mesFin){
+        double total = cobroService.getTotalRecaudado(anio,mesIni,mesFin);
+        return ResponseEntity.ok(total);
+    }
 
 }
