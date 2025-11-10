@@ -72,8 +72,11 @@ public class UsuarioService {
     }
 
     public List<Usuario> getUsuariosByBilleteraId(Long billeteraId){
-        List<Usuario> usuarios = usuarioRepository.findUsuariosByBilleteraId(billeteraId);
-        return usuarios;
+        return usuarioRepository.findUsuariosByBilleteraId(billeteraId);
+    }
+
+    public List<Long> getUsuariosByRol(Rol rol){
+        return usuarioRepository.findIdsByRol(rol);
     }
 
 
