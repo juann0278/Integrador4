@@ -79,7 +79,9 @@ public class UsuarioService {
         return usuarioRepository.findIdsByRol(rol);
     }
 
-
+    public List<Long> obtenerUsuariosRelacionados(Long usuarioId) {
+        return usuarioRepository.findUsuariosRelacionados(usuarioId);
+    }
 
 
 }

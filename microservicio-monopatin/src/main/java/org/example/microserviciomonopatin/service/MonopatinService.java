@@ -115,4 +115,11 @@ public class MonopatinService {
         return mantenimientoFeignClient.saveMantenimiento(mantenimiento);
     }
 
+    public double obtenerDistanciaTotal(List<Long> monopatinIds) {
+        List<Monopatin> monopatines = monopatinRepository.findAllById(monopatinIds);
+        return monopatines.stream()
+                .mapToDouble(Monopatin::getKmsAcumulados)
+                .sum();
+    }
+
 }

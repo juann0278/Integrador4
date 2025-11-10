@@ -77,5 +77,30 @@ public class ViajeService {
         return viajeRepository.contarViajesPorUsuarioYRol(inicio, fin, usuariosRol);
     }
 
+    public double calcularUso(Long usuarioId, LocalDate fechaInicio, LocalDate fechaFin, boolean incluirRelacionados) {
+        //Obtengo todos los usuarios a incluir
+        List<Long> usuarios = new ArrayList<>();
+        usuarios.add(usuarioId);
+
+        if (incluirRelacionados) {
+            List<Long> relacionados = cuentaFeignClient.obtenerUsuariosRelacionados(usuarioId);
+            usuarios.addAll(relacionados);
+        }
+
+        // Buscamos todos los viajes de esos usuarios en el período
+        List<Viaje> viajes = viajeRepository.finByUsuarioIdInAndFechaInicioBetween(usuarios, fechaInicio, fechaFin);
+
+        //Obtenemos los IDs de monopatines usados
+        List<Long> monopatinIds = viajes.stream()
+                .map(Viaje::getId_monopatin)
+                .distinct()
+                .toList();
+
+        //Consultamos al microservicio-monopatin para saber la distancia de cada uno
+        double totalKm = monopatinFeignClient.obtenerDistanciaTotal(monopatinIds);
+
+        return totalKm;
+    }
+
 }
 

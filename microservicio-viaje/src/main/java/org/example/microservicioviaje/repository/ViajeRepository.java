@@ -24,4 +24,6 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
             @Param("inicio") LocalDate inicio,
             @Param("fin") LocalDate fin,
             @Param("usuarios") List<Long> usuarios);
+
+    List<Viaje> finByUsuarioIdInAndFechaInicioBetween(List<Long> usuarios, LocalDate inicio, LocalDate fin);
 }

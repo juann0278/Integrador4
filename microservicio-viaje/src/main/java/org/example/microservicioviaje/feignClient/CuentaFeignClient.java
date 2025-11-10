@@ -12,4 +12,6 @@ public interface CuentaFeignClient {
     @GetMapping("/{rol}")
     public List<Long> getUsuarios(@PathVariable("rol") String rol);
 
+    @GetMapping("/relacionados/{usuarioId}")
+    public List<Long> obtenerUsuariosRelacionados(@PathVariable("usuarioId") Long usuarioId);
 }

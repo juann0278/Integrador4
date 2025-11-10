@@ -18,4 +18,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     @Query("SELECT id FROM Usuario u WHERE u.rol = :rol")
     List<Long> findIdsByRol(@Param("rol") Rol rol);
 
+    @Query("SELECT DISTINCT u2.id " +
+            "FROM Usuario u1 " +
+            "JOIN u1.billeteras b " +
+            "JOIN b.usuarios u2 " +
+            "WHERE u1.id = :usuarioId " +
+            "AND u2.id <> :usuarioId")
+    List<Long> findUsuariosRelacionados(@Param("usuarioId") Long usuarioId);
+
 }

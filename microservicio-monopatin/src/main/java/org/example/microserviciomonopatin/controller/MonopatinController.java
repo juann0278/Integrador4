@@ -86,5 +86,9 @@ public class MonopatinController {
      return ResponseEntity.ok(reporte);
     }
 
-
+    @PostMapping("/distancia-total")
+    public ResponseEntity<Double> obtenerDistanciaTotal(@RequestBody List<Long> monopatinIds) {
+        double total = monopatinService.obtenerDistanciaTotal(monopatinIds);
+        return ResponseEntity.ok(total);
+    }
 }

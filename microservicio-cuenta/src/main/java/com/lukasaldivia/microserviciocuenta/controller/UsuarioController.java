@@ -75,6 +75,9 @@ public class UsuarioController {
         return ResponseEntity.ok(ids);
     }
 
-
+    @GetMapping("/relacionados/{usuarioId}")
+    public List<Long> obtenerUsuariosRelacionados(@PathVariable("usuarioId") Long usuarioId) {
+        return usuarioService.obtenerUsuariosRelacionados(usuarioId);
+    }
 
 }

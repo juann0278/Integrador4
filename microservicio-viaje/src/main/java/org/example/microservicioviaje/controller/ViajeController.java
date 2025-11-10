@@ -60,4 +60,12 @@ public class ViajeController {
         List<Usuario> usuarios = viajeService.findUsuariosMayorUso(ini, fin, tipoUsuario);
         return ResponseEntity.ok(usuarios);
     }
+
+    //4)h) Como usuario quiero saber cuánto he usado los monopatines en un período, y opcionalmente si
+    //otros usuarios relacionados a mi cuenta los han usado.
+    @GetMapping("/uso")
+    public ResponseEntity<Double>  obtenerUsoMonopatin(@RequestParam Long idUsuario, @RequestParam LocalDate fechaInicio, @RequestParam LocalDate fechaFin, @RequestParam(defaultValue = "false") boolean incluirRelacionados){
+        double totalUso = viajeService.calcularUso(idUsuario, fechaInicio, fechaFin, incluirRelacionados);
+        return ResponseEntity.ok(totalUso);
+    }
 }
