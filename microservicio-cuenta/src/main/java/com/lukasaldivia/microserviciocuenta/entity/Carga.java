@@ -26,5 +26,8 @@ public class Carga {
     @Positive(message = "El monto debe ser mayor a 0")
     private Float monto;
 
+    @NotNull(message = "El id_usuario que realizó la carga es obligatorio")
+    private Long id_usuario;
+
     private LocalDateTime fecha = LocalDateTime.now();
 }
