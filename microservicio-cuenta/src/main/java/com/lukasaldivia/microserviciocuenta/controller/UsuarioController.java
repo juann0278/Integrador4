@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -61,6 +63,16 @@ public class UsuarioController {
         }
 
         return ResponseEntity.ok(rol);
+    }
+
+    @GetMapping("/{rol}")
+    public ResponseEntity<List<Long>> getUsuarios(@Valid @PathVariable("rol") Rol rol){
+        List<Long> ids = usuarioService.getUsuariosByRol(rol);
+        if(ids == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(ids);
     }
 
 

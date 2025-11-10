@@ -91,8 +91,6 @@ public class BilleteraService {
 
 
     public List<Usuario> getUsuarios(Long billeteraId){
-        List<Usuario> usuarios = usuarioService.getUsuariosByBilleteraId(billeteraId);
-
-        return usuarios;
+        return usuarioService.getUsuariosByBilleteraId(billeteraId);
     }
 }
