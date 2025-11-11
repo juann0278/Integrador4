@@ -1,5 +1,6 @@
 package com.lukasaldivia.microserviciocuenta.controller;
 
+import com.lukasaldivia.microserviciocuenta.entity.Billetera;
 import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
@@ -54,15 +55,22 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
 
-        user.setNombre(usuario.getNombre());
-        user.setApellido(usuario.getApellido());
-        user.setEmail(usuario.getEmail());
-        user.setCelular(usuario.getCelular());
-        user.setPassword(usuario.getPassword());
-        user.setRol(usuario.getRol());
-        user.setMercadoPago(usuario.getMercadoPago());
+        return ResponseEntity.ok(usuarioService.update(user, usuario));
+    }
 
-        return ResponseEntity.ok(usuarioService.save(user));
+    @PutMapping("/{id}/billetera")
+    public ResponseEntity<Billetera> update(@PathVariable("id") Long id, @RequestBody Long id_billetera){
+        Usuario user = usuarioService.findById(id);
+
+        if (user == null)
+            return ResponseEntity.notFound().build();
+
+        Billetera res = usuarioService.agregarBilletera(id,id_billetera);
+
+        if (res == null)
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("/{id}/rol")

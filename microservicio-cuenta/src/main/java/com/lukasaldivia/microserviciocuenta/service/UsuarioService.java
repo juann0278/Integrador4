@@ -35,8 +35,16 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public Usuario update(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public Usuario update(Usuario from, Usuario to) {
+        from.setNombre(to.getNombre());
+        from.setApellido(to.getApellido());
+        from.setEmail(to.getEmail());
+        from.setCelular(to.getCelular());
+        from.setPassword(to.getPassword());
+        from.setRol(to.getRol());
+        from.setMercadoPago(to.getMercadoPago());
+
+        return usuarioRepository.save(from);
     }
 
     public Rol getRolById(Long id) {
