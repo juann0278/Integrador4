@@ -11,19 +11,19 @@ import java.util.List;
 
 public interface ViajeRepository extends JpaRepository<Viaje, Long> {
 
-    @Query("SELECT v FROM Viaje v WHERE YEAR(v.fecha_inicio) = :anio")
+    @Query("SELECT v FROM Viaje v WHERE YEAR(v.fechaInicio) = :anio")
     List<Viaje> findByYear(int anio);
 
-    @Query("SELECT new org.example.microservicioviaje.model.Usuario(v.id_usuario, COUNT(v)) " +
+    @Query("SELECT new org.example.microservicioviaje.model.Usuario(v.idUsuario, COUNT(v)) " +
             "FROM Viaje v " +
-            "WHERE v.fecha_inicio BETWEEN :inicio AND :fin " +
-            "AND v.id_usuario IN :usuarios " +
-            "GROUP BY v.id_usuario " +
+            "WHERE v.fechaInicio BETWEEN :inicio AND :fin " +
+            "AND v.idUsuario IN :usuarios " +
+            "GROUP BY v.idUsuario " +
             "ORDER BY COUNT(v) DESC")
     List<Usuario> contarViajesPorUsuarioYRol(
             @Param("inicio") LocalDate inicio,
             @Param("fin") LocalDate fin,
             @Param("usuarios") List<Long> usuarios);
 
-    List<Viaje> finByUsuarioIdInAndFechaInicioBetween(List<Long> usuarios, LocalDate inicio, LocalDate fin);
+    List<Viaje> findByIdUsuarioInAndFechaInicioBetween(List<Long> usuarios, LocalDate inicio, LocalDate fin);
 }

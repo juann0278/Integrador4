@@ -16,21 +16,21 @@ public class Viaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long id_monopatin;
-    private Long id_usuario;
+    private Long idMonopatin;
+    private Long idUsuario;
 
     @ManyToOne
     @JoinColumn(name = "parada_inicial_id")
-    private Parada parada_inicial;
+    private Parada paradaInicial;
 
     @ManyToOne
     @JoinColumn(name = "parada_final_id")
-    private Parada parada_final;
+    private Parada paradaFinal;
 
-    private LocalDate fecha_inicio;
-    private LocalDate fecha_fin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private Boolean estadoPausado;
-    private LocalDate pausa_inicial;
-    private LocalDate pausa_final;
-    private Integer pausa_acumulada;
+    private LocalDate pausaInicial;
+    private LocalDate pausaFinal;
+    private Integer pausaAcumulada;
 }
