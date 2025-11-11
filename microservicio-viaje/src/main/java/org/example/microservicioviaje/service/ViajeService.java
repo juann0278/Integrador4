@@ -52,7 +52,7 @@ public class ViajeService {
     public List<Monopatin> obtenerMonopatinesMasViajes(int anio, int cantidadMinima) {
         List<Viaje> viajesDelAnio = viajeRepository.findByYear(anio); // Traemos los viajes del año indicado
         // Contamos la cantidad de viajes por monopatín
-        Map<Long, Long> conteo = viajesDelAnio.stream().collect(Collectors.groupingBy(Viaje::getId_monopatin, Collectors.counting()));
+        Map<Long, Long> conteo = viajesDelAnio.stream().collect(Collectors.groupingBy(Viaje::getIdMonopatin, Collectors.counting()));
         // Filtramos los monopatines con más de X viajes
         List<Long> monopatinesId = conteo.entrySet().stream()
                 .filter(entry -> entry.getValue() > cantidadMinima)
@@ -88,11 +88,11 @@ public class ViajeService {
         }
 
         // Buscamos todos los viajes de esos usuarios en el período
-        List<Viaje> viajes = viajeRepository.finByUsuarioIdInAndFechaInicioBetween(usuarios, fechaInicio, fechaFin);
+        List<Viaje> viajes = viajeRepository.findByIdUsuarioInAndFechaInicioBetween(usuarios, fechaInicio, fechaFin);
 
         //Obtenemos los IDs de monopatines usados
         List<Long> monopatinIds = viajes.stream()
-                .map(Viaje::getId_monopatin)
+                .map(Viaje::getIdMonopatin)
                 .distinct()
                 .toList();
 

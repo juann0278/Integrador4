@@ -30,7 +30,7 @@ public class ParadaController {
         return ResponseEntity.ok(entity);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Parada> delete(@PathVariable Long id){
         Parada Deleted = this.paradaService.deleteById(id);
         return ResponseEntity.ok(Deleted);
