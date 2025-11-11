@@ -23,6 +23,14 @@ public class BilleteraService {
         return billeteraRepository.findById(id).orElse(null);
     }
 
+    public Billetera save(Billetera billetera){
+        return billeteraRepository.save(billetera);
+    }
+
+    public List<Billetera> findAll(){
+        return billeteraRepository.findAll();
+    }
+
     public Billetera update(Billetera billetera) {
         return billeteraRepository.save(billetera);
     }

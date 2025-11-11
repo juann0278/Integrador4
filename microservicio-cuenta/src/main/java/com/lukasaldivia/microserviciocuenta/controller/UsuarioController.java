@@ -19,6 +19,17 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @GetMapping
+    public ResponseEntity<List<Usuario>> findAll(){
+        List<Usuario> res =  usuarioService.findAll();
+
+        if (res.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuario(@PathVariable("id") Long id){
         Usuario user = usuarioService.findById(id);

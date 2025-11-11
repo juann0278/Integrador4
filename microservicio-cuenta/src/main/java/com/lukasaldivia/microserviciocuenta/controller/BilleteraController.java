@@ -6,6 +6,7 @@ import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.service.BilleteraService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,17 @@ public class BilleteraController {
 
     @Autowired
     private BilleteraService billeteraService;
+
+    @GetMapping
+    public  ResponseEntity<List<Billetera>> findAll(){
+        List<Billetera> res = billeteraService.findAll();
+
+        if(res.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return ResponseEntity.ok().body(res);
+    }
 
     @GetMapping("/{billeteraId}/saldo")
     public ResponseEntity<Float> getSaldo(@PathVariable Long billeteraId){
@@ -50,6 +62,17 @@ public class BilleteraController {
         }
 
         return ResponseEntity.ok(premium);
+    }
+
+    @PostMapping
+    public ResponseEntity<Billetera> save(@Valid @RequestBody Billetera billetera){
+        Billetera res = billeteraService.save(billetera);
+
+        if (res == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(res);
     }
 
     @PutMapping("/{billeteraId}/estado-cuenta")
