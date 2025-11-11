@@ -20,6 +20,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+// Basics
     @GetMapping
     public ResponseEntity<List<Usuario>> findAll(){
         List<Usuario> res =  usuarioService.findAll();
@@ -57,6 +58,19 @@ public class UsuarioController {
 
         return ResponseEntity.ok(usuarioService.update(user, usuario));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Usuario> delete(@PathVariable("id") Long id){
+        Usuario user = usuarioService.findById(id);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+        usuarioService.deleteById(id);
+
+        return ResponseEntity.ok(user);
+    }
+
+//
 
     @PutMapping("/{id}/billetera")
     public ResponseEntity<Billetera> update(@PathVariable("id") Long id, @RequestBody Long id_billetera){

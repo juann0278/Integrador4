@@ -20,6 +20,7 @@ public class BilleteraController {
     @Autowired
     private BilleteraService billeteraService;
 
+// Basics
     @GetMapping
     public  ResponseEntity<List<Billetera>> findAll(){
         List<Billetera> res = billeteraService.findAll();
@@ -29,6 +30,29 @@ public class BilleteraController {
         }
 
         return ResponseEntity.ok().body(res);
+    }
+
+    @PostMapping
+    public ResponseEntity<Billetera> save(@Valid @RequestBody Billetera billetera){
+        Billetera res = billeteraService.save(billetera);
+
+        if (res == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(res);
+    }
+
+    @DeleteMapping("/{billeteraId}")
+    public ResponseEntity<Billetera> delete(@PathVariable Long billeteraId){
+        Billetera billetera = billeteraService.findById(billeteraId);
+
+        if (billetera == null)
+            return ResponseEntity.notFound().build();
+
+        billeteraService.delete(billeteraId);
+
+        return ResponseEntity.ok(billetera);
     }
 
     @GetMapping("/{billeteraId}/saldo")
@@ -64,16 +88,6 @@ public class BilleteraController {
         return ResponseEntity.ok(premium);
     }
 
-    @PostMapping
-    public ResponseEntity<Billetera> save(@Valid @RequestBody Billetera billetera){
-        Billetera res = billeteraService.save(billetera);
-
-        if (res == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(res);
-    }
 
     @PutMapping("/{billeteraId}/estado-cuenta")
     public ResponseEntity<EstadoCuenta> save(

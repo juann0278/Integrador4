@@ -35,6 +35,10 @@ public class BilleteraService {
         return billeteraRepository.save(billetera);
     }
 
+    public void delete(Long id) {
+        billeteraRepository.deleteById(id);
+    }
+
     public Billetera agregarSaldo(Long billeteraId, Float monto) {
         Billetera billetera = findById(billeteraId);
 
