@@ -66,15 +66,17 @@ public class MonopatinController {
     }
 
     @GetMapping("/kms")
-    public ResponseEntity<?> getReporteMonopatinesByKms() {
+    public ResponseEntity<List<MonopatinReporteDTO>> getReporteMonopatinesByKms() {
         List<MonopatinReporteDTO> reporte = monopatinService.getMonopatinesByKms();
         return ResponseEntity.ok(reporte);
     }
 
 
-    @PostMapping("/mantenimiento/{id}")
-    public ResponseEntity<Mantenimiento> registerMantenimiento(@PathVariable("id") Long id, @RequestBody Monopatin monopatin) {
-        Mantenimiento mantenimiento = monopatinService.registerMantenimiento(id, monopatin);
+    @PutMapping("/mantenimiento/{id}")
+    public ResponseEntity<Mantenimiento> registerMantenimiento(@PathVariable Long id) {
+        System.out.println("llegue");
+        Mantenimiento mantenimiento = monopatinService.registerMantenimiento(id);
+
         return  ResponseEntity.ok(mantenimiento);
     }
 

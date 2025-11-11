@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Mantenimiento {
     private Long id;
     private Long idMonopatin;

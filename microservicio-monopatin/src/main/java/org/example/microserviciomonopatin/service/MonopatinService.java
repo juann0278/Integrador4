@@ -9,7 +9,6 @@ import org.example.microserviciomonopatin.feignClients.ViajeFeignClient;
 import org.example.microserviciomonopatin.models.Mantenimiento;
 import org.example.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -69,7 +68,7 @@ public class MonopatinService {
 
     public List<MonopatinReporteDTO> getMonopatinesByKms() {
         List<Monopatin> monopatinesByKms = monopatinRepository.getAllMonopatinesByKms();
-        List<MonopatinReporteDTO> reporte = new ArrayList<>();
+        ArrayList<MonopatinReporteDTO> reporte = new ArrayList<>();
         for (Monopatin m : monopatinesByKms ){
             MonopatinReporteDTO dto = new MonopatinReporteDTO(
                     m.getId(),
@@ -83,7 +82,7 @@ public class MonopatinService {
 
     public List<MonopatinReportePausaDTO> getMonopatinesConYSinPausa() {
         List<Monopatin> monopatinesByPausa = viajeFeignClient.getAll();
-        List<MonopatinReportePausaDTO> reporte = new ArrayList<>();
+            List<MonopatinReportePausaDTO> reporte = new ArrayList<>();
         for (Monopatin m : monopatinesByPausa) {
             MonopatinReportePausaDTO dto = new MonopatinReportePausaDTO(
                     m.getId(),
@@ -96,23 +95,28 @@ public class MonopatinService {
     }
 
 
-    public Mantenimiento registerMantenimiento(Long id, Monopatin monopatinMantenimiento) {
+    public Mantenimiento registerMantenimiento(Long id) {
         Mantenimiento mantenimiento = new Mantenimiento();
-        Monopatin monopatin = monopatinRepository.findById(id).orElse(null);
+        Monopatin monopatin = findById(id).orElse(null);
+
+        if (monopatin == null) {
+            return null;
+        }
+
         if(monopatin.getEstado().equals("mantenimiento")){
             throw new RuntimeException("El monopatin ya se encuentra en mantenimiento");
         }
         monopatin.setEstado("mantenimiento");
+        System.out.println(monopatin);
         monopatinRepository.save(monopatin);
 
         mantenimiento.setDescripcion("en mantenimiento");
         mantenimiento.setIdMonopatin(monopatin.getId());
         mantenimiento.setFechaInicio(LocalDate.now());
-        mantenimiento.setFechaFin(LocalDate.MAX);
+        mantenimiento.setFechaFin(null); // el localData.Max no lo soporta mongodb
 
-
-
-        return mantenimientoFeignClient.saveMantenimiento(mantenimiento);
+        System.out.println(mantenimiento);
+        return mantenimientoFeignClient.save(mantenimiento);
     }
 
     public double obtenerDistanciaTotal(List<Long> monopatinIds) {

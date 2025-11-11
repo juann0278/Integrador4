@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "microservicio-mantenimiento", url = "http://localhost:8003/mantenimiento")
 public interface MantenimientoFeignClient {
     @PostMapping("")
-    public Mantenimiento saveMantenimiento(@RequestBody Mantenimiento mantenimiento);
+    public Mantenimiento save(@RequestBody Mantenimiento mantenimiento);
 }
