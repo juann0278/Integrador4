@@ -1,10 +1,8 @@
 package com.lukasaldivia.microserviciocuenta.service;
 
 import com.lukasaldivia.microserviciocuenta.entity.Billetera;
-import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
-import com.lukasaldivia.microserviciocuenta.repository.BilleteraRepository;
 import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +15,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
     private BilleteraService billeteraService;
 
     public List<Usuario> findAll() {

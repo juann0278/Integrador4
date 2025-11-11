@@ -10,14 +10,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("SELECT FROM Usuario u JOIN u.billeteras b WHERE b.id = :billeteraId")
-    List<Usuario> findUsuariosByBilleteraId(@Param("billeteraId") Long id);
+    // ✅ Devuelve todos los usuarios asociados a una billetera específica
+    @Query("SELECT DISTINCT u FROM Usuario u JOIN u.billeteras b WHERE b.id = :billeteraId")
+    List<Usuario> findUsuariosByBilleteraId(@Param("billeteraId") Long billeteraId);
 
-    @Query("SELECT id FROM Usuario u WHERE u.rol = :rol")
+    // ✅ Devuelve los IDs de los usuarios con un rol específico
+    @Query("SELECT u.id FROM Usuario u WHERE u.rol = :rol")
     List<Long> findIdsByRol(@Param("rol") Rol rol);
 
+    // ✅ Devuelve los IDs de usuarios relacionados por compartir una billetera
     @Query("SELECT DISTINCT u2.id " +
             "FROM Usuario u1 " +
             "JOIN u1.billeteras b " +
@@ -25,5 +28,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
             "WHERE u1.id = :usuarioId " +
             "AND u2.id <> :usuarioId")
     List<Long> findUsuariosRelacionados(@Param("usuarioId") Long usuarioId);
-
 }

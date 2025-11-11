@@ -4,16 +4,18 @@ import com.lukasaldivia.microserviciocuenta.entity.Billetera;
 import com.lukasaldivia.microserviciocuenta.entity.EstadoCuenta;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.repository.BilleteraRepository;
-import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BilleteraService {
 
     @Autowired
     private BilleteraRepository billeteraRepository;
 
+    @Autowired
     private UsuarioService usuarioService;
 
     public Billetera findById(Long id){

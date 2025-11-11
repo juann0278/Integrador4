@@ -2,11 +2,12 @@ package com.lukasaldivia.microserviciocuenta.service;
 
 import com.lukasaldivia.microserviciocuenta.entity.Billetera;
 import com.lukasaldivia.microserviciocuenta.entity.Carga;
-import com.lukasaldivia.microserviciocuenta.entity.Usuario;
 import com.lukasaldivia.microserviciocuenta.repository.CargaRepository;
 import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CargaService {
 
     @Autowired
