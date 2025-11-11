@@ -3,9 +3,9 @@ package com.lukasaldivia.microserviciocuenta.service;
 import com.lukasaldivia.microserviciocuenta.entity.Billetera;
 import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import com.lukasaldivia.microserviciocuenta.entity.Usuario;
+import com.lukasaldivia.microserviciocuenta.repository.BilleteraRepository;
 import com.lukasaldivia.microserviciocuenta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +17,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    @Lazy
-    private BilleteraService billeteraService;
+    private BilleteraRepository billeteraRepository;
 
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
@@ -54,7 +53,7 @@ public class UsuarioService {
         if(usuario == null)
             return null;
 
-        Billetera billetera = billeteraService.findById(billeteraId);
+        Billetera billetera = billeteraRepository.findById(billeteraId).orElse(null);
 
         if (billetera == null)
             return null;
