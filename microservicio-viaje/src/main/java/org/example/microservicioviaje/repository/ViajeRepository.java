@@ -14,6 +14,9 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
     @Query("SELECT v FROM Viaje v WHERE YEAR(v.fechaInicio) = :anio")
     List<Viaje> findByYear(int anio);
 
+    // Obtiene todos los viajes de un monopatín específico
+    List<Viaje> findByIdMonopatin(Long monopatinId);
+
     @Query("SELECT new org.example.microservicioviaje.model.Usuario(v.idUsuario, COUNT(v)) " +
             "FROM Viaje v " +
             "WHERE v.fechaInicio BETWEEN :inicio AND :fin " +

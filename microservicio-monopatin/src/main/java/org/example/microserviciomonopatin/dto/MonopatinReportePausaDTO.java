@@ -14,6 +14,10 @@ public class MonopatinReportePausaDTO {
         this.tiempoSinPausa = tiempoTotal -  pausaAcumulada;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String toString(){
         return "Monopatin id " + id + " tiempo sin pausa: " +  tiempoSinPausa + ", tiempo Total con pausas incluidas: " + tiempoTotal;
     }

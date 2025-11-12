@@ -19,7 +19,7 @@ public class ViajeController {
     ViajeService viajeService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Viaje>> getAllViajes(){
+    public ResponseEntity<List<Viaje>> getAll(){
         List<Viaje> viajes = viajeService.getAll();
         if (viajes.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -44,6 +44,20 @@ public class ViajeController {
         viaje.setId(id);
         Viaje updatedViaje = viajeService.update(viaje);
         return ResponseEntity.ok(updatedViaje);
+    }
+
+    // Endpoint para tiempo total de uso de un monopatín
+    @GetMapping("/monopatin/{id}/tiempoUso")
+    public ResponseEntity<Double> getTiempoUsoTotal(@PathVariable("id") Long monopatinId) {
+        double tiempoUso = viajeService.getTiempoUsoTotal(monopatinId);
+        return ResponseEntity.ok(tiempoUso);
+    }
+
+    // Endpoint para pausa acumulada de un monopatín
+    @GetMapping("/monopatin/{id}/pausaAcumulada")
+    public ResponseEntity<Double> getPausaAcumulada(@PathVariable("id") Long monopatinId) {
+        double pausa = viajeService.getPausaAcumulada(monopatinId);
+        return ResponseEntity.ok(pausa);
     }
 
     //4)c) Como administrador quiero consultar los monopatines con mas de X viajes en un cierto año

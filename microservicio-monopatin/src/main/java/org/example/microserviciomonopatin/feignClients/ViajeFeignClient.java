@@ -12,7 +12,7 @@ import java.util.List;
 @FeignClient (name = "microservicio-viaje", url = "http://localhost:8006/viajes")
 public interface ViajeFeignClient {
 
-    @GetMapping("/monopatines")
+    @GetMapping("/")
     List<Monopatin> getAll();
 
     @GetMapping("/monopatin/{id}/tiempoUso")

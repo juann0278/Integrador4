@@ -49,6 +49,34 @@ public class ViajeService {
         return viajeRepository.save(viaje);
     }
 
+    // Tiempo total de uso de un monopatín (en minutos o como quieras)
+    public double getTiempoUsoTotal(Long idMonopatin) {
+        List<Viaje> viajes = viajeRepository.findByIdMonopatin(idMonopatin);
+        double tiempoTotal = 0;
+        for (Viaje v : viajes) {
+            if (v.getFechaInicio() != null && v.getFechaFin() != null) {
+                // Calcula la diferencia en días; si quieres horas/minutos ajusta
+                tiempoTotal += java.time.Duration.between(
+                        v.getFechaInicio().atStartOfDay(),
+                        v.getFechaFin().atStartOfDay()
+                ).toMinutes();
+            }
+        }
+        return tiempoTotal;
+    }
+
+    // Pausa acumulada de un monopatín (en minutos)
+    public double getPausaAcumulada(Long idMonopatin) {
+        List<Viaje> viajes = viajeRepository.findByIdMonopatin(idMonopatin);
+        double pausaTotal = 0;
+        for (Viaje v : viajes) {
+            if (v.getPausaAcumulada() != null) {
+                pausaTotal += v.getPausaAcumulada();
+            }
+        }
+        return pausaTotal;
+    }
+
     public List<Monopatin> obtenerMonopatinesMasViajes(int anio, int cantidadMinima) {
         List<Viaje> viajesDelAnio = viajeRepository.findByYear(anio); // Traemos los viajes del año indicado
         // Contamos la cantidad de viajes por monopatín

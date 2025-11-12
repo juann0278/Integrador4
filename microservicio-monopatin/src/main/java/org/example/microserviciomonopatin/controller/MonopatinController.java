@@ -74,9 +74,7 @@ public class MonopatinController {
 
     @PutMapping("/mantenimiento/{id}")
     public ResponseEntity<Mantenimiento> registerMantenimiento(@PathVariable Long id) {
-        System.out.println("llegue");
         Mantenimiento mantenimiento = monopatinService.registerMantenimiento(id);
-
         return  ResponseEntity.ok(mantenimiento);
     }
 
