@@ -44,13 +44,13 @@ public class TarifaService {
 
     public Tarifa ajustar(Long idCuenta, Tarifa nuevaTarifa){
 
-        Boolean isAdmin = adminCuentaFeignClient.esAdmin(idCuenta);
+        String rol = adminCuentaFeignClient.getRol(idCuenta);
 
-        if(!isAdmin){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN , ("No tiene permisos para ajustar el precio de tarifas"));
+        if("ADMIN".equalsIgnoreCase(rol)){
+            return tarifaRepository.save(nuevaTarifa);
         }
+        throw new ResponseStatusException(HttpStatus.FORBIDDEN , ("No tiene permisos para ajustar el precio de tarifas"));
 
-        return tarifaRepository.save(nuevaTarifa);
     }
 
 
