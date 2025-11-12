@@ -1,5 +1,6 @@
 package com.lukasaldivia.microserviciocuenta.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -32,5 +33,6 @@ public class Billetera {
     private Float saldo = 0f;
 
     @ManyToMany(mappedBy = "billeteras")
+    @JsonIgnore
     private List<Usuario> usuarios;
 }

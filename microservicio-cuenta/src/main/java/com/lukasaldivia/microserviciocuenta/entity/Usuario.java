@@ -1,5 +1,6 @@
 package com.lukasaldivia.microserviciocuenta.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -44,6 +45,7 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "billetera_id")
 
     )
+    @JsonIgnore
     private List<Billetera> billeteras;
 
     private String mercadoPago;
