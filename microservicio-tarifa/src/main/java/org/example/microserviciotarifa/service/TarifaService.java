@@ -1,5 +1,6 @@
 package org.example.microserviciotarifa.service;
 
+import com.lukasaldivia.microserviciocuenta.entity.Rol;
 import org.example.microserviciotarifa.entity.Tarifa;
 import org.example.microserviciotarifa.feignClient.AdminCuentaFeignClient;
 import org.example.microserviciotarifa.repository.TarifaRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TarifaService {
@@ -36,20 +38,23 @@ public class TarifaService {
     }
 
     public Tarifa update(Tarifa tarifa){
+
         if(!tarifaRepository.existsById(tarifa.getId())){
             throw new RuntimeException("Tarifa no encontrada");
         }
+
         return tarifaRepository.save(tarifa);
     }
 
     public Tarifa ajustar(Long idCuenta, Tarifa nuevaTarifa){
 
-        String rol = adminCuentaFeignClient.getRol(idCuenta);
+        Rol rol = adminCuentaFeignClient.getRol(idCuenta);
 
-        if("ADMIN".equalsIgnoreCase(rol)){
+        if(rol == Rol.ADMINISTRADOR){
             return tarifaRepository.save(nuevaTarifa);
         }
-        throw new ResponseStatusException(HttpStatus.FORBIDDEN , ("No tiene permisos para ajustar el precio de tarifas"));
+
+       throw new ResponseStatusException(HttpStatus.FORBIDDEN , ("No tiene permisos para ajustar el precio de tarifas"));
 
     }
 
