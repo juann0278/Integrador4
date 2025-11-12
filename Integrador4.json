@@ -1,0 +1,1649 @@
+{
+	"info": {
+		"_postman_id": "fbe6f42b-7446-4a4c-be26-39c74ddc35c9",
+		"name": "Integrador4",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49238112",
+		"_collection_link": "https://marcos-cordoba-9720568.postman.co/workspace/marqui's-Workspace~edbf8099-d894-42a2-83d2-60b208548b3c/collection/49238112-fbe6f42b-7446-4a4c-be26-39c74ddc35c9?action=share&source=collection_link&creator=49238112"
+	},
+	"item": [
+		{
+			"name": "microservicio-cuenta",
+			"item": [
+				{
+					"name": "Billetera",
+					"item": [
+						{
+							"name": "findAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"premium\": false,\r\n        \"fechaRegistro\": \"2025-11-09T09:30:00\",\r\n        \"estadoCuenta\": \"ACTIVA\",\r\n        \"saldo\": 0.0,\r\n        \"usuarios\": []\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getSaldo",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/saldo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"saldo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEstadoCeutna",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/estado-cuenta",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"estado-cuenta"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getPremium",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/premium",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "true",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/estado-cuenta",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"estado-cuenta"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setPremium",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "true",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/premium",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"premium"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUsuarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "true"
+								},
+								"url": {
+									"raw": "http://localhost:8005/billeteras/2/usuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"billeteras",
+										"2",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Carga",
+					"item": [
+						{
+							"name": "cargar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/cargas/billetera/2?monto=3000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"cargas",
+										"billetera",
+										"2"
+									],
+									"query": [
+										{
+											"key": "monto",
+											"value": "3000"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuario",
+					"item": [
+						{
+							"name": "findAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUsuario",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"premium\": true,\r\n    \"fechaRegistro\": \"2025-11-10T12:00:00\",\r\n    \"estadoCuenta\": \"ACTIVA\",\r\n    \"saldo\": 250.5,\r\n    \"usuarios\": null\r\n  },\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcos1111cordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"Marcos\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"marqui bueno\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"marcoscordoba\",\r\n  \"password\": \"MiClaveSegura123\",\r\n  \"celular\": \"5491123456789\",\r\n  \"email\": \"marcos.cordoba@example.com\",\r\n  \"nombre\": \"marqui bueno\",\r\n  \"apellido\": \"Cordoba\",\r\n  \"billeteras\": [],\r\n  \"mercadoPago\": \"MP123456789\",\r\n  \"rol\": \"USUARIO\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "2",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/1/billetera",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"1",
+										"billetera"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRol",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"premium\": true,\r\n    \"fechaRegistro\": \"2025-11-10T12:00:00\",\r\n    \"estadoCuenta\": \"ACTIVA\",\r\n    \"saldo\": 250.5,\r\n    \"usuarios\": null\r\n  },\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/1/rol",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"1",
+										"rol"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUsuarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"premium\": true,\r\n    \"fechaRegistro\": \"2025-11-10T12:00:00\",\r\n    \"estadoCuenta\": \"ACTIVA\",\r\n    \"saldo\": 250.5,\r\n    \"usuarios\": null\r\n  },\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/USUARIO",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"USUARIO"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtenerUsuariosRelacionados",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"premium\": true,\r\n    \"fechaRegistro\": \"2025-11-10T12:00:00\",\r\n    \"estadoCuenta\": \"ACTIVA\",\r\n    \"saldo\": 250.5,\r\n    \"usuarios\": null\r\n  },\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8005/usuarios/relacionados/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8005",
+									"path": [
+										"usuarios",
+										"relacionados",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "microservicio-mantenimiento",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idMonopatin\": 1,\r\n        \"fechaInicio\": \"2025-11-08\",\r\n        \"fechaFin\": null,\r\n        \"descripcion\": \"En arreglo indefinido\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idMonopatin\": 1,\r\n        \"fechaInicio\": \"2025-11-08\",\r\n        \"fechaFin\": null,\r\n        \"descripcion\": \"En arreglo indefinido (descripcion actualizada)\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveMonopatin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"idMonopatin\": 1,\r\n        \"fechaInicio\": \"2025-11-08\",\r\n        \"fechaFin\": null,\r\n        \"descripcion\": \"En arreglo indefinido\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8003/mantenimiento/monopatin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8003",
+							"path": [
+								"mantenimiento",
+								"monopatin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "microservicio-monopatin",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"longitud\": \"-58.3816\",\r\n  \"latitud\": \"-34.6037\",\r\n  \"kmsAcumulados\": 12.5,\r\n  \"id_viaje\": 101,\r\n  \"id_parada\": 5,\r\n  \"estado\": \"en uso\",\r\n  \"disponible\": true,\r\n  \"tiempoDeUso\": 2.75\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8007/monopatin/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 88,\r\n  \"longitud\": -58,\r\n  \"latitud\": -34,\r\n  \"kmsAcumulados\": 12.5,\r\n  \"id_viaje\": 101,\r\n  \"id_parada\": 5,\r\n  \"estado\": \"EN_USO\",\r\n  \"disponible\": false\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8007/monopatin/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"longitud\": -58,\r\n  \"latitud\": -34,\r\n  \"kmsAcumulados\": 12.5,\r\n  \"id_viaje\": 101,\r\n  \"id_parada\": 5,\r\n  \"estado\": \"EN_USO\",\r\n  \"disponible\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMonopatinesCercanos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"longitud\": \"-58.3816\",\r\n  \"latitud\": \"-34.6037\",\r\n  \"kmsAcumulados\": 12.5,\r\n  \"id_viaje\": 101,\r\n  \"id_parada\": 5,\r\n  \"estado\": \"en uso\",\r\n  \"disponible\": true,\r\n  \"tiempoDeUso\": 2.75\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin/monopatinesCercanos/longitud/-58/latitud/-34?longMaxRango=100000&latMaxRango=10000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"monopatinesCercanos",
+								"longitud",
+								"-58",
+								"latitud",
+								"-34"
+							],
+							"query": [
+								{
+									"key": "longMaxRango",
+									"value": "100000"
+								},
+								{
+									"key": "latMaxRango",
+									"value": "10000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReporteMonopatinesByKms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin/kms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"kms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerMantenimiento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8007/monopatin/mantenimiento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"mantenimiento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReporteMonopatinesConYSinPausas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8007/monopatin/usoConPausa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"usoConPausa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerDistanciaTotal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[1, 2, 3]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/monopatin/distancia-total",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"monopatin",
+								"distancia-total"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "microservicio-tarifa",
+			"item": [
+				{
+					"name": "Cobro",
+					"item": [
+						{
+							"name": "findAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[1, 2, 3]"
+								},
+								"url": {
+									"raw": "http://localhost:8004/cobros/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"cobros",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n    \"fecha\": \"2025-08-15\",\r\n    \"monto\": 300.0,\r\n    \"tarifa\": null\r\n  },",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8004/cobros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"cobros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTotal",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[1, 2, 3]"
+								},
+								"url": {
+									"raw": "http://localhost:8004/cobros/total/2025/05/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"cobros",
+										"total",
+										"2025",
+										"05",
+										"11"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tarifa",
+					"item": [
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8004/tarifas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"tarifas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"monto\": 5000.50,\n  \"monto_especial\": 900.00,\n  \"fecha_ini\": \"2025-11-01T00:00:00Z\",\n  \"fecha_fin\": \"2025-12-01T00:00:00Z\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8004/tarifas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"tarifas"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8004/tarifas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"tarifas",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": 2,\r\n        \"monto\": 5000.5,\r\n        \"monto_especial\": 11900.0,\r\n        \"fecha_ini\": \"2025-11-01T00:00:00.000+00:00\",\r\n        \"fecha_fin\": \"2025-12-01T00:00:00.000+00:00\",\r\n        \"cobros\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8004/tarifas/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"tarifas",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ajustar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n  \"monto\": 5000.50,\r\n  \"monto_especial\": 12900.00,\r\n  \"fecha_ini\": \"2025-11-01T00:00:00Z\",\r\n  \"fecha_fin\": \"2025-12-01T00:00:00Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8004/tarifas/ajustar/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8004",
+									"path": [
+										"tarifas",
+										"ajustar",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "microservicio-viaje",
+			"item": [
+				{
+					"name": "Parada",
+					"item": [
+						{
+							"name": "findAllParadas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/paradas/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"paradas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"longitud\": -59,\r\n  \"latitud\": -34,\r\n  \"nombre\": \"Parada Obelisco\",\r\n  \"direccion\": \"Av. Corrientes y 9 de Julio, CABA\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8006/paradas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"paradas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/paradas/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"paradas",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"longitud\": -8339119,\r\n    \"latitud\": -3444,\r\n    \"nombre\": \"Parada Obelisqqqqco\",\r\n    \"direccion\": \"Av. Corrientes y 9 de Julio, CABA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8006/paradas/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"paradas",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Viaje",
+					"item": [
+						{
+							"name": "getAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8006/viajes/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "save",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_monopatin\": 1,\r\n  \"id_usuario\": 10,\r\n  \"fecha_inicio\": \"2025-11-04\",\r\n  \"fecha_fin\": null,\r\n  \"estadoPausado\": false,\r\n  \"pausa_inicial\": null,\r\n  \"pausa_final\": null,\r\n  \"pausa_acumulada\": 0\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8006/viajes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"idMonopatin\": null,\r\n        \"idUsuario\": null,\r\n        \"paradaInicial\": null,\r\n        \"paradaFinal\": null,\r\n        \"fechaInicio\": null,\r\n        \"fechaFin\": null,\r\n        \"estadoPausado\": false,\r\n        \"pausaInicial\": \"2025-11-12\",\r\n        \"pausaFinal\": \"2025-11-15\",\r\n        \"pausaAcumulada\": 123\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8006/viajes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTiempoUsoTotal",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/monopatin/3/tiempoUso",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"monopatin",
+										"3",
+										"tiempoUso"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getPausaAcumulada",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/monopatin/3/pausaAcumulada",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"monopatin",
+										"3",
+										"pausaAcumulada"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtenerMonopatinesMasViajes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/monopatines-mas-viajes?cantidad=1&anio=2025",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"monopatines-mas-viajes"
+									],
+									"query": [
+										{
+											"key": "cantidad",
+											"value": "1"
+										},
+										{
+											"key": "anio",
+											"value": "2025"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtenerUsuariosMayorUso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/usuarios-mayor-uso?ini=2000-01-01&fin=2030-12-31&tipoUsuario=USUARIO",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"usuarios-mayor-uso"
+									],
+									"query": [
+										{
+											"key": "ini",
+											"value": "2000-01-01"
+										},
+										{
+											"key": "fin",
+											"value": "2030-12-31"
+										},
+										{
+											"key": "tipoUsuario",
+											"value": "USUARIO"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtenerUsoMonopatin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8006/viajes/uso?idUsuario=1&fechaInicio=2025-11-01&fechaFin=2025-11-12&incluirRelacionados=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8006",
+									"path": [
+										"viajes",
+										"uso"
+									],
+									"query": [
+										{
+											"key": "idUsuario",
+											"value": "1"
+										},
+										{
+											"key": "fechaInicio",
+											"value": "2025-11-01"
+										},
+										{
+											"key": "fechaFin",
+											"value": "2025-11-12"
+										},
+										{
+											"key": "incluirRelacionados",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://template.postman-echo.com"
+		}
+	]
+}
