@@ -37,7 +37,8 @@ public class ParadaController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<Parada> update(@PathVariable Long id, @RequestBody Parada parada){
-        Parada entity = this.paradaService.update(id, parada);
+        parada.setId(id);
+        Parada entity = this.paradaService.update(parada);
         return ResponseEntity.ok(entity);
     }
 }

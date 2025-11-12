@@ -30,15 +30,10 @@ public class ParadaService {
         return deletedParada;
     }
 
-    public Parada update(Long id, Parada parada) {
-        if(!this.paradaRepository.existsById(id)) {
+    public Parada update(Parada parada) {
+        if(!this.paradaRepository.existsById(parada.getId())) {
             throw new RuntimeException("Parada no encontrada");
         }
-        Parada updateParada = this.paradaRepository.findById(parada.getId()).orElse(null);
-        updateParada.setNombre(parada.getNombre());
-        updateParada.setDireccion(parada.getDireccion());
-        updateParada.setLatitud(parada.getLatitud());
-        updateParada.setLongitud(parada.getLongitud());
-        return this.paradaRepository.save(updateParada);
+       return paradaRepository.save(parada);
     }
 }
