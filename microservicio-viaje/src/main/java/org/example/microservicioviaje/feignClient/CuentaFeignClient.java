@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "microservicio-cuenta", url = "http://localhost:8006/usuarios")
+@FeignClient(name = "microservicio-cuenta", url = "http://localhost:8005/usuarios")
 public interface CuentaFeignClient {
 
-    @GetMapping("/{rol}")
+    @GetMapping("/rol/{rol}")
     public List<Long> getUsuarios(@PathVariable("rol") String rol);
 
     @GetMapping("/relacionados/{usuarioId}")

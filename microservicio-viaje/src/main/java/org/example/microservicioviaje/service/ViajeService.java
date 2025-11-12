@@ -98,6 +98,7 @@ public class ViajeService {
     public List<Usuario> findUsuariosMayorUso(LocalDate inicio, LocalDate fin, String rol){
         List<Long> usuariosRol = cuentaFeignClient.getUsuarios(rol);
 
+        System.out.println("usuariosRol: "+usuariosRol);
         if (usuariosRol.isEmpty()){
             return Collections.emptyList();
         }
