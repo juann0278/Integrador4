@@ -21,7 +21,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 // Basics
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Usuario>> findAll(){
         List<Usuario> res =  usuarioService.findAll();
 
@@ -98,7 +98,7 @@ public class UsuarioController {
         return ResponseEntity.ok(rol);
     }
 
-    @GetMapping("/{rol}")
+    @GetMapping("/rol/{rol}")
     public ResponseEntity<List<Long>> getUsuarios(@Valid @PathVariable("rol") Rol rol){
         List<Long> ids = usuarioService.getUsuariosByRol(rol);
         if(ids == null){
