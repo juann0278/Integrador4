@@ -1,0 +1,11 @@
+services:
+  mysql_ia_agent:
+    image: mysql:8
+    container_name: mysql_ia_agent
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: ia_agent
+    ports:
+      - "3301:3306"
