@@ -1,0 +1,20 @@
+server:
+  port: 8006
+spring:
+  datasource:
+    dirver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ""
+    url: jdbc:mysql://localhost:3309/viaje?createDatabaseIfNotExist=true
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: always
+
+
+
+
