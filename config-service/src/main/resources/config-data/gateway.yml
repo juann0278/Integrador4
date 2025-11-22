@@ -26,18 +26,26 @@ spring:
     gateway:
       mvc:
         routes:
-          - id: microestudiante
-            uri: lb://microestudiante
+          - id: microcuenta
+#chequear   uri: lb://microcuenta
             predicates:
-              - Path=/api/estudiantes/**
-          - id: microcarrera
-            uri: lb://microcarrera
+              - Path=/api/cuenta/**
+          - id: micromantenimiento
+ #chequear  uri: lb://micromantenimiento
             predicates:
-              - Path=/api/carreras/**
-          - id: microinscripcion
-            uri: lb://microinscripcion
+              - Path=/api/mantenimiento/**
+          - id: micromonopatin
+#chequear   uri: lb://micromonopatin
             predicates:
-              - Path=/api/inscripciones/**
+              - Path=/api/monopatines/**
+          - id: microtarifa
+#chequear   uri: lb://microtarifa
+            predicates:
+              - Path=/api/tarifa/**
+          - id: microviaje
+#chequear   uri: lb://microviaje
+            predicates:
+              - Path=/api/viajes/**
 
 logging:
   level:
