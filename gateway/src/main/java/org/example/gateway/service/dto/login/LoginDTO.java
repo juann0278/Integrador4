@@ -1,10 +1,20 @@
 package org.example.gateway.service.dto.login;
 
-public class LoginDTO {
-    public Object getUsername() {
-    }
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.ToString;
 
-    public Object getPassword() {
-        return null;
-    }
+@ToString
+@Data
+public class LoginDTO {
+
+    @NotNull
+    @NotEmpty
+    private String username;
+
+    @NotNull
+    @NotEmpty
+    private String password;
+
 }
