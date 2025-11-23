@@ -1,6 +1,7 @@
 package org.example.gateway.security;
 
-import org.example.gateway.repository.UserRepository;
+import org.example.gateway.feignClients.UserFeignClient;
+import org.example.gateway.service.dto.user.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,19 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class DomainUserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
-    private final UserRepository userRepository;
+    private final UserFeignClient userFeignClient;
 
-    public DomainUserDetailsService( UserRepository userRepository ) {
-        this.userRepository = userRepository;
+    public DomainUserDetailsService( UserFeignClient userFeignClient ) {
+        this.userFeignClient = userFeignClient;
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(final String username ) {
         log.debug("Authenticating {}", username);
-
-
-        return userRepository
+        UserDTO
                 .findOneWithAuthoritiesByUsernameIgnoreCase( username.toLowerCase() )
                 .map( this::createSpringSecurityUser )
                 .orElseThrow( () -> new UsernameNotFoundException( "El usuario " + username + " no existe" ) );

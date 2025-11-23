@@ -5,5 +5,6 @@ public class LoginDTO {
     }
 
     public Object getPassword() {
+        return null;
     }
 }
