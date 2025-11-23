@@ -1,6 +1,6 @@
 package org.example.gateway.config;
 
-import org.example.gateway.security.AuthotityConstant;
+import org.example.gateway.security.AuthorityConstant;
 import org.example.gateway.security.jwt.JwtFilter;
 import org.example.gateway.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
@@ -45,7 +45,7 @@ public class SecurityConfig {
                             //Billetera
                         .requestMatchers(HttpMethod.DELETE, "/api/billeteras/{billeteraId}")
                         .requestMatchers(HttpMethod.GET, "/api/billeteras/{billeteraId}/saldo")
-                        .requestMatchers(HttpMethod.GET, "/api/billeteras/{billeteraId/estado-cuenta")
+                        .requestMatchers(HttpMethod.GET, "/api/billeteras/{billeteraId}/estado-cuenta")
                         .requestMatchers(HttpMethod.GET, "/api/billeteras/{billeteraId}/premium")
                         .requestMatchers(HttpMethod.GET, "/api/billeteras/{billeteraId}/usuarios")
                         .requestMatchers(HttpMethod.PUT, "api/billeteras/{billeteraId}/estado-cuenta")
