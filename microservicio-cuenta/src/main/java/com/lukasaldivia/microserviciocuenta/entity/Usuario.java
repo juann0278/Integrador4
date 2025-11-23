@@ -53,4 +53,6 @@ public class Usuario {
     @NotNull(message = "El rol es obligatorio")
     @Enumerated(EnumType.STRING)
     private Rol rol;
+
+
 }

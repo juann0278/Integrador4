@@ -28,4 +28,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             "WHERE u1.id = :usuarioId " +
             "AND u2.id <> :usuarioId")
     List<Long> findUsuariosRelacionados(@Param("usuarioId") Long usuarioId);
+
+    @Query("""
+            FROM Usuario u JOIN FETCH u.au
+            """)
+    Usuario findOneWithAuthoritiesByUsername(String username);
 }

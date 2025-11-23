@@ -21,6 +21,13 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 // Basics
+    @GetMapping("/{username}")
+    public ResponseEntity<Usuario> findOneWithAutoritiesByUsernameIgnoreCase(@PathVariable String username) {
+        Usuario user = usuarioService.findOneWithAutoritiesByUsernameIgnoreCase(username);
+        return ResponseEntity.ok(user);
+    }
+
+
     @GetMapping("/")
     public ResponseEntity<List<Usuario>> findAll(){
         List<Usuario> res =  usuarioService.findAll();
