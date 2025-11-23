@@ -64,13 +64,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/{id}/rol")
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/rol/{rol}")
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/relacionados/{usuarioId}")
-                        //Microservicio Mantenimiento
-                        .requestMatchers(HttpMethod.POST, "/api/mantenimiento")
-                        .requestMatchers(HttpMethod.GET, "/api/mantenimiento")
-                        .requestMatchers(HttpMethod.GET, "/api/mantenimiento/{id}")
-                        .requestMatchers(HttpMethod.DELETE, "/api/mantenimiento/{id}")
-                        .requestMatchers(HttpMethod.PUT, "/api/mantenimiento/{id}")
-                        .requestMatchers(HttpMethod.POST, "/api/mantenimiento/monopatin/{idMonopatin}")
                         //Microservicio Monopatin
                         .requestMatchers(HttpMethod.GET, "/api/monopatin")
                         .requestMatchers(HttpMethod.GET, "/api/monopatin/{id}")
@@ -104,6 +97,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/viajes/usuarios-mayor-uso")
                         .requestMatchers(HttpMethod.GET, "/api/viajes/uso")
                         .anyRequest().authenticated()
+                        //Microservicio Mantenimiento
+                        .requestMatchers("/api/mantenimiento/**").hasAuthority(AuthorityConstant._MANTENIMIENTO)
+
                 )
                 .httpBasic( Customizer.withDefaults() )
                 .addFilterBefore( new JwtFilter( this.tokenProvider ), UsernamePasswordAuthenticationFilter.class );
