@@ -72,6 +72,11 @@ eureka:
               http://localhost: 8001
             predicates:
               - Path=/api/paradas/**
+          - id: ia
+            uri:
+              http://localhost: 8080
+            predicates:
+                - Path=/api/ia/**
 
 logging:
   level:
