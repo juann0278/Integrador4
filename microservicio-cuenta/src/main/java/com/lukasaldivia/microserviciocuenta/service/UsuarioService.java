@@ -92,7 +92,7 @@ public class UsuarioService {
     }
 
 
-    public Usuario findOneWithAutoritiesByUsernameIgnoreCase(String username) {
-        return usuarioRepository.findOneWithAuthoritiesByUsername(username);
-    }
+//    public Usuario findOneWithAutoritiesByUsernameIgnoreCase(String username) {
+//        return usuarioRepository.findOneWithAuthoritiesByUsername(username);
+//    }
 }

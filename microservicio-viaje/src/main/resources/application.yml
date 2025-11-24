@@ -1,6 +1,5 @@
 server:
   port: 8006
-
 spring:
   application:
     name: microservicio-viaje
