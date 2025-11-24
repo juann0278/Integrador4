@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .securityMatcher("/api/**" )
                 .authorizeHttpRequests( authz -> authz
                         .requestMatchers(HttpMethod.POST, "/api/token").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/registro").permitAll()
                         //FALTA COMPLETAR A QUIEN SE DA PERMISO EN TODOS LOS REQUEST
                         //Microservicio Cuenta
                             //Billetera
@@ -96,10 +98,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/viajes/monopatines-mas-viajes").hasAuthority(AuthorityConstant._ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/viajes/usuarios-mayor-uso").hasAuthority(AuthorityConstant._ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/viajes/uso").hasAnyAuthority(AuthorityConstant._USUARIO, AuthorityConstant._PREMIUM)
-                        .anyRequest().authenticated()
                         //Microservicio Mantenimiento
                         .requestMatchers("/api/mantenimiento/**").hasAuthority(AuthorityConstant._MANTENIMIENTO)
-
+                        .anyRequest().authenticated()
                 )
                 .httpBasic( Customizer.withDefaults() )
                 .addFilterBefore( new JwtFilter( this.tokenProvider ), UsernamePasswordAuthenticationFilter.class );

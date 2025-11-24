@@ -1,15 +1,15 @@
+server:
+  port: 8007
 spring:
   application:
     name: microservicio-monopatin
-
+  config:
+    import: optional:configserver:http://localhost:8081
   data:
     mongodb:
-      uri: mongodb://localhost:27017/monopatines_db
+      uri: mongodb://localhost:27017/monopatinesdb
+      database: monopatinesdb
   autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-server:
-  port: 8007
-
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 

@@ -1,17 +1,20 @@
+server:
+  port: 8006
 spring:
   application:
     name: microservicio-viaje
-server:
-  port: 8006
-
+  config:
+    import: optional:configserver:http://localhost:8081
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url : jdbc:mysql://localhost:3306/viaje?createDatabaseIfNotExist=true
     username: root
-    password:
-
+    password: ""
+    url: jdbc:mysql://localhost:3309/viaje?createDatabaseIfNotExist=true
   jpa:
-    hibernate:
-      ddl-auto: create-drop
     show-sql: true
     database: mysql
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: always

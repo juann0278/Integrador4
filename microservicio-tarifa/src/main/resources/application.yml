@@ -1,17 +1,21 @@
-spring:
-  application:
-    name: microservicio-tarifa
 server:
   port: 8004
 
+spring:
+  application:
+    name: microservicio-tarifa
+  config:
+    import: optional:configserver:http://localhost:8081
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url : jdbc:mysql://localhost:3306/tarifa?createDatabaseIfNotExist=true
     username: root
-    password:
-
+    password: ""
+    url: jdbc:mysql://localhost:3308/tarifa?createDatabaseIfNotExist=true
   jpa:
-    hibernate:
-      ddl-auto: create-drop
     show-sql: true
     database: mysql
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: always

@@ -1,21 +1,22 @@
+#spring:
+#  application:
+#    name: microservicio-cuenta
+#  main:
+#    allow-bean-definition-overriding: true
+#  cloud:
+#    config:
+#      uri: http://localhost:8081
+server:
+  port: 8005
 spring:
   application:
     name: microservicio-cuenta
-server:
-  port: 8005
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url : jdbc:mysql://localhost:3306/cuentas?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3305/cuenta?createDatabaseIfNotExist=true
     username: root
-    password:
-
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     database: mysql
-
-
-
-

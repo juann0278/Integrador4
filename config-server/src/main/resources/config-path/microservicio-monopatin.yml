@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  application:
+    name: microservicio-monopatin
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27017/monopatinesdb?authSource=admin
+      database: monopatinesdb
+  eureka:
+    client:
+      fetch-registry: true
+      register-with-eureka: true
+      service-url:
+        defaultZone: http://localhost:8761/eureka/
+    instance:
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -2,7 +2,7 @@ package org.example.gateway.security;
 
 import org.example.gateway.entity.Authority;
 import org.example.gateway.entity.User;
-import org.example.gateway.feignClients.UserFeignClient;
+import org.example.gateway.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,18 +20,18 @@ import java.util.stream.Collectors;
 public class DomainUserDetailsService implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
-    private final UserFeignClient userFeignClient;
+    private final UserRepository userRepository;
 
-    public DomainUserDetailsService( UserFeignClient userFeignClient ) {
-        this.userFeignClient = userFeignClient;
+    public DomainUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(final String username ) {
         log.debug("Authenticating {}", username);
-        return userFeignClient
-                .findOneWithAuthoritiesByUsernameIgnoreCase( username.toLowerCase() )
+        return userRepository
+                .findOneWithAuthoritiesByUserNameIgnoreCase( username.toLowerCase() )
                 .map( this::createSpringSecurityUser )
                 .orElseThrow( () -> new UsernameNotFoundException( "El usuario " + username + " no existe" ) );
     }
@@ -43,7 +43,6 @@ public class DomainUserDetailsService implements UserDetailsService {
                 .map( Authority::getName )
                 .map( SimpleGrantedAuthority::new )
                 .collect( Collectors.toList() );
-
         return new org.springframework.security.core.userdetails.User( user.getUsername(), user.getPassword(), grantedAuthorities );
     }
 }
