@@ -5,6 +5,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/monopatines_db
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 server:
   port: 8007
 
