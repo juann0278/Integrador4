@@ -1,6 +1,8 @@
 spring:
-    application:
-        name: microservicio-cuenta
+  application:
+    name: microservicio-cuenta
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
     config:
-        import: optional:configserver:http://localhost:8081
-
+      uri: http://localhost:8081

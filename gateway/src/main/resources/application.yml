@@ -4,16 +4,8 @@ server:
 spring:
   application:
     name: gateway
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    hostname: localhost
-
+  config:
+    import: optional:configserver:http://localhost:8081/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/auth?createDatabaseIfNotExist=true
@@ -23,56 +15,3 @@ eureka:
       ddl-auto: update
     show-sql: true
     database: mysql
-  cloud:
-    gateway:
-      mvc:
-        routes:
-          - id: billetera
-            uri:
-              http://localhost: 8005
-            predicates:
-              - Path=/api/billeteras/**
-          - id: carga
-            uri:
-              http://localhost: 8005
-            predicates:
-              - Path=/api/cargas/**
-          - id: usuario
-            uri:
-              http://localhost: 8005
-            predicates:
-              - Path=/api/usuarios/**
-          - id: mantenimiento
-            uri:
-              http://localhost: 8003
-            predicates:
-              - Path=/api/mantenimiento/**
-          - id: monopatin
-            uri:
-              http://localhost: 8007
-            predicates:
-              - Path=/api/monopatin/**
-          - id: tarifa
-            uri:
-              http://localhost: 8004
-            predicates:
-              - Path=/api/tarifas/**
-          - id: cobros
-            uri:
-              http://localhost: 8004
-            predicates:
-              - Path=/api/cobros/**
-          - id: viaje
-            uri:
-              http://localhost: 8001
-            predicates:
-              - Path=/api/viajes/**
-          - id: parada
-            uri:
-              http://localhost: 8001
-            predicates:
-              - Path=/api/paradas/**
-
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG

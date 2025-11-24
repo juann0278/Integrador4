@@ -28,19 +28,30 @@ public class JwtController {
 
     @PostMapping()
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request ) {
+        try {
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
-        );
+            System.out.println("Esto funciona 1");
+            Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+            System.out.println("Esto funciona 2");
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate( authenticationToken );
-        SecurityContextHolder.getContext().setAuthentication( authentication );
-        final var jwt = tokenProvider.createToken( authentication );
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add( JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt );
-        return new ResponseEntity<>( new JWTToken( jwt ), httpHeaders, HttpStatus.OK );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            System.out.println("Esto funciona 3");
+
+            final var jwt = tokenProvider.createToken(authentication);
+            System.out.println("Esto funciona 4");
+
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+            return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace(); // <--- ver qué excepción lanza
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
+
 
     static class JWTToken {
 
