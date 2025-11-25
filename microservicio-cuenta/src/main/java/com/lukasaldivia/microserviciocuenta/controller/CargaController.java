@@ -24,6 +24,7 @@ public class CargaController {
         if(carga == null){
             return ResponseEntity.badRequest().build();
         }
+        //mock de mercado pago
         ApiResponse<Carga> response = new ApiResponse<>("Se debitaron " +monto+ "pesos de tu cuenta de mercado pago", carga);
         return ResponseEntity.ok(response);
     }
