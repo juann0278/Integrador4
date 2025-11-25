@@ -1,4 +1,4 @@
-package com.lukasaldivia.microserviciocuenta.model;
+package com.lukasaldivia.microserviciocuenta.common;
 
 import lombok.Data;
 

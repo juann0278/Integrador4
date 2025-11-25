@@ -1,7 +1,7 @@
 package com.lukasaldivia.microserviciocuenta.controller;
 
 import com.lukasaldivia.microserviciocuenta.entity.Carga;
-import com.lukasaldivia.microserviciocuenta.model.ApiResponse;
+import com.lukasaldivia.microserviciocuenta.common.ApiResponse;
 import com.lukasaldivia.microserviciocuenta.service.CargaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
