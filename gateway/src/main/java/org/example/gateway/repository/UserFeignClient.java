@@ -1,4 +1,4 @@
-package org.example.gateway.feignClients;
+package org.example.gateway.repository;
 
 
 import org.example.gateway.entity.User;
