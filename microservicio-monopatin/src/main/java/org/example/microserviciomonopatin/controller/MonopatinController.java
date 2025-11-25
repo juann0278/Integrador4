@@ -1,6 +1,7 @@
 package org.example.microserviciomonopatin.controller;
 
 
+import org.example.microserviciomonopatin.common.ApiResponse;
 import org.example.microserviciomonopatin.dto.MonopatinReporteDTO;
 import org.example.microserviciomonopatin.dto.MonopatinReportePausaDTO;
 import org.example.microserviciomonopatin.entity.Monopatin;
@@ -60,9 +61,14 @@ public class MonopatinController {
     }
 
     @GetMapping("/monopatinesCercanos/longitud/{longitud}/latitud/{latitud}")
-    public ResponseEntity<List<Monopatin>> getMonopatinesCercanos(@PathVariable int longitud, @PathVariable int latitud, @RequestParam int longMaxRango, @RequestParam int latMaxRango) {
+    public ResponseEntity<ApiResponse<List<Monopatin>>> getMonopatinesCercanos(@PathVariable int longitud, @PathVariable int latitud, @RequestParam int longMaxRango, @RequestParam int latMaxRango) {
         List<Monopatin> monopatinesCercanos =   monopatinService.findCercanos(longitud, latitud, longMaxRango, latMaxRango);
-        return  ResponseEntity.ok(monopatinesCercanos);
+        if (monopatinesCercanos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        //mock de microservicio google maps
+        ApiResponse<List<Monopatin>> response = new ApiResponse<>("Ubicación obtenida por google maps", monopatinesCercanos);
+        return  ResponseEntity.ok(response);
     }
 
     @GetMapping("/kms")
