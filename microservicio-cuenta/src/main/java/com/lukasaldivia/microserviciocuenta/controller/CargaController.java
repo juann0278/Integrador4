@@ -1,6 +1,7 @@
 package com.lukasaldivia.microserviciocuenta.controller;
 
 import com.lukasaldivia.microserviciocuenta.entity.Carga;
+import com.lukasaldivia.microserviciocuenta.model.ApiResponse;
 import com.lukasaldivia.microserviciocuenta.service.CargaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ public class CargaController {
     private CargaService cargaService;
 
     @PostMapping("/billetera/{billeteraId}")
-    public ResponseEntity<Carga> cargar(
+    public ResponseEntity<ApiResponse<Carga>> cargar(
             @PathVariable Long billeteraId,
             @RequestParam Float monto
     ){
@@ -23,8 +24,8 @@ public class CargaController {
         if(carga == null){
             return ResponseEntity.badRequest().build();
         }
-
-        return ResponseEntity.ok(carga);
+        ApiResponse<Carga> response = new ApiResponse<>("Se debitaron " +monto+ "pesos de tu cuenta de mercado pago", carga);
+        return ResponseEntity.ok(response);
     }
 
 
